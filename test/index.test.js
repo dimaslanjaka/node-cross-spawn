@@ -271,7 +271,7 @@ run.methods.forEach((method) => {
                         const promise = run(method, 'somecommandthatwillneverexist', ['foo']);
                         const { cp } = promise;
 
-                        promise.catch(() => {});
+                        promise.catch(() => { });
 
                         let timeout;
 
@@ -309,9 +309,9 @@ run.methods.forEach((method) => {
                     const promise = run(method, `${__dirname}/fixtures/exit-1`);
                     const { cp } = promise;
 
-                    promise.catch(() => {});
+                    promise.catch(() => { });
 
-                    const onExit = jest.fn(() => {});
+                    const onExit = jest.fn(() => { });
                     let timeout;
 
                     cp
@@ -349,9 +349,9 @@ run.methods.forEach((method) => {
                     const promise = run(method, `${__dirname}/fixtures/shebang-enoent`);
                     const { cp } = promise;
 
-                    promise.catch(() => {});
+                    promise.catch(() => { });
 
-                    const onExit = jest.fn(() => {});
+                    const onExit = jest.fn(() => { });
                     let timeout;
 
                     cp
@@ -391,7 +391,7 @@ run.methods.forEach((method) => {
                     const promise = run(method, 'somecommandthatwillneverexist', ['foo']);
                     const { cp } = promise;
 
-                    promise.catch(() => {});
+                    promise.catch(() => { });
 
                     let timeout;
 
