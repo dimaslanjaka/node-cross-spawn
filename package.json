@@ -20,6 +20,7 @@
   },
   "license": "MIT",
   "main": "index.js",
+  "types": "typings/index.d.ts",
   "files": [
     "lib",
     "!lib/**/*.test.js"
