@@ -4,6 +4,15 @@ const cp = require('child_process');
 const parse = require('./lib/parse');
 const enoent = require('./lib/enoent');
 
+
+/**
+ *
+ * @description
+ * @param {string} command - Command.
+ * @param {string[]|import('child_process').SpawnOptions} args - Arguments.
+ * @param {import('child_process').SpawnOptions} [options] - Spawn Options.
+ * @returns {import('child_process').ChildProcess} Return Promise.
+ */
 function spawn(command, args, options) {
     // Parse the arguments
     const parsed = parse(command, args, options);
@@ -18,6 +27,14 @@ function spawn(command, args, options) {
     return spawned;
 }
 
+/**
+ *
+ * @description
+ * @param {string} command - Command.
+ * @param {string[]} args - Arguments.
+ * @param {import('child_process').SpawnOptions} [options] - Spawn Options.
+ * @returns {ReturnType<typeof cp.spawnSync>} Return Promise.
+ */
 function spawnSync(command, args, options) {
     // Parse the arguments
     const parsed = parse(command, args, options);
