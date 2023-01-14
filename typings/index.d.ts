@@ -1,11 +1,26 @@
 /// <reference types="node" />
 export = spawn;
-declare function spawn(command: any, args: any, options: any): cp.ChildProcessWithoutNullStreams;
+/**
+ *
+ * @description
+ * @param {string} command - Command.
+ * @param {string[]|import('child_process').SpawnOptions} args - Arguments.
+ * @param {import('child_process').SpawnOptions} [options] - Spawn Options.
+ * @returns {import('child_process').ChildProcess} Return Promise.
+ */
+declare function spawn(command: string, args: string[] | import('child_process').SpawnOptions, options?: import('child_process').SpawnOptions): import('child_process').ChildProcess;
 declare namespace spawn {
     export { spawn, spawnSync as sync, spawnAsync as async, parse as _parse, enoent as _enoent };
 }
-import cp = require("child_process");
-declare function spawnSync(command: any, args: any, options: any): cp.SpawnSyncReturns<string>;
+/**
+ *
+ * @description
+ * @param {string} command - Command.
+ * @param {string[]} args - Arguments.
+ * @param {import('child_process').SpawnOptions} [options] - Spawn Options.
+ * @returns {ReturnType<typeof cp.spawnSync>} Return Promise.
+ */
+declare function spawnSync(command: string, args: string[], options?: import('child_process').SpawnOptions): ReturnType<typeof cp.spawnSync>;
 /**
  * Spawn asynchronously.
  *
@@ -22,4 +37,5 @@ declare function spawnAsync(command: string, args: string[], options: import('ch
 }>;
 import parse = require("./lib/parse");
 import enoent = require("./lib/enoent");
+import cp = require("child_process");
 //# sourceMappingURL=index.d.ts.map
