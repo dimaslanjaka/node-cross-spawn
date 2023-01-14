@@ -10,7 +10,12 @@ on:
       - closed
   push:
     branches:
-      - 'private'
+      - "private"
+      - "master"
+    paths:
+      - "/index.js"
+      - "/src/**/*"
+      - "**/package*.json"
 
 permissions: read-all
 
