@@ -2,10 +2,11 @@
 
 const path = require('path');
 const fs = require('fs');
+const childProcess = require('child_process');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
-const childProcess = require('child_process');
 const pkey = require('path-key');
+
 const pathKey = pkey.default();
 const run = require('./util/run');
 
@@ -249,8 +250,8 @@ run.methods.forEach((method) => {
 
         it('should work with a relative posix path to a command', async () => {
             const relativeFixturesPath = path
-            .relative(process.cwd(), `${__dirname}/fixtures`)
-            .replace(/\\/, '/');
+                .relative(process.cwd(), `${__dirname}/fixtures`)
+                .replace(/\\/, '/');
 
             const { stdout: stdout1 } = await run(
                 method,
@@ -280,8 +281,8 @@ run.methods.forEach((method) => {
 
         it('should work with a relative posix path to a command with a custom `cwd`', async () => {
             const relativeTestPath = path
-            .relative(process.cwd(), __dirname)
-            .replace(/\\/, '/');
+                .relative(process.cwd(), __dirname)
+                .replace(/\\/, '/');
 
             const { stdout: stdout1 } = await run(method, 'fixtures/say-foo', {
                 cwd: relativeTestPath,
@@ -354,17 +355,17 @@ run.methods.forEach((method) => {
                         let timeout;
 
                         cp.on('error', assertError)
-                        .on('exit', () => {
-                            cp.removeAllListeners();
-                            clearTimeout(timeout);
-                            reject(new Error('Should not emit exit'));
-                        })
-                        .on('close', (code, signal) => {
-                            expect(code).not.toBe(0);
-                            expect(signal).toBe(null);
+                            .on('exit', () => {
+                                cp.removeAllListeners();
+                                clearTimeout(timeout);
+                                reject(new Error('Should not emit exit'));
+                            })
+                            .on('close', (code, signal) => {
+                                expect(code).not.toBe(0);
+                                expect(signal).toBe(null);
 
-                            timeout = setTimeout(resolve, 1000);
-                        });
+                                timeout = setTimeout(resolve, 1000);
+                            });
                     });
                 });
             }
@@ -396,15 +397,15 @@ run.methods.forEach((method) => {
                         clearTimeout(timeout);
                         reject(new Error('Should not emit error'));
                     })
-                    .on('exit', onExit)
-                    .on('close', (code, signal) => {
-                        expect(code).toBe(1);
-                        expect(signal).toBe(null);
-                        expect(onExit).toHaveBeenCalledTimes(1);
-                        expect(onExit).toHaveBeenCalledWith(1, null);
+                        .on('exit', onExit)
+                        .on('close', (code, signal) => {
+                            expect(code).toBe(1);
+                            expect(signal).toBe(null);
+                            expect(onExit).toHaveBeenCalledTimes(1);
+                            expect(onExit).toHaveBeenCalledWith(1, null);
 
-                        timeout = setTimeout(resolve, 1000);
-                    });
+                            timeout = setTimeout(resolve, 1000);
+                        });
                 });
             });
         }
@@ -438,15 +439,15 @@ run.methods.forEach((method) => {
                         clearTimeout(timeout);
                         reject(new Error('Should not emit error'));
                     })
-                    .on('exit', onExit)
-                    .on('close', (code, signal) => {
-                        expect(code).not.toBe(0);
-                        expect(signal).toBe(null);
-                        expect(onExit).toHaveBeenCalledTimes(1);
-                        expect(onExit).not.toHaveBeenCalledWith(0, null);
+                        .on('exit', onExit)
+                        .on('close', (code, signal) => {
+                            expect(code).not.toBe(0);
+                            expect(signal).toBe(null);
+                            expect(onExit).toHaveBeenCalledTimes(1);
+                            expect(onExit).not.toHaveBeenCalledWith(0, null);
 
-                        timeout = setTimeout(resolve, 1000);
-                    });
+                            timeout = setTimeout(resolve, 1000);
+                        });
                 });
             });
         }
@@ -480,17 +481,17 @@ run.methods.forEach((method) => {
                     let timeout;
 
                     cp.on('error', (err) => expect(err.code).toBe('ENOENT'))
-                    .on('exit', () => {
-                        cp.removeAllListeners();
-                        clearTimeout(timeout);
-                        reject(new Error('Should not emit exit'));
-                    })
-                    .on('close', (code, signal) => {
-                        expect(code).not.toBe(0);
-                        expect(signal).toBe(null);
+                        .on('exit', () => {
+                            cp.removeAllListeners();
+                            clearTimeout(timeout);
+                            reject(new Error('Should not emit exit'));
+                        })
+                        .on('close', (code, signal) => {
+                            expect(code).not.toBe(0);
+                            expect(signal).toBe(null);
 
-                        timeout = setTimeout(resolve, 1000);
-                    });
+                            timeout = setTimeout(resolve, 1000);
+                        });
                 });
             });
         }

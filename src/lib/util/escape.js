@@ -3,6 +3,9 @@
 // See http://www.robvanderwoude.com/escapechars.php
 const metaCharsRegExp = /([()\][%!^"`<>&|;, *?])/g;
 
+/**
+ * @param arg
+ */
 function escapeCommand(arg) {
     // Escape meta chars
     arg = arg.replace(metaCharsRegExp, '^$1');
@@ -10,6 +13,10 @@ function escapeCommand(arg) {
     return arg;
 }
 
+/**
+ * @param arg
+ * @param doubleEscapeMetaChars
+ */
 function escapeArgument(arg, doubleEscapeMetaChars) {
     // Convert to string
     arg = `${arg}`;

@@ -1,6 +1,6 @@
 'use strict';
 
-const spawn = require('../../index');
+const spawn = require('../../dist/index');
 
 function isForceShell(method) {
     return /-force-shell$/.test(method);
@@ -84,8 +84,8 @@ function runAsync(command, args, options) {
         };
 
         cp
-        .on('error', onError)
-        .on('close', onClose);
+            .on('error', onError)
+            .on('close', onClose);
     });
 
     promise.cp = cp;
