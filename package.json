@@ -58,7 +58,6 @@
     ]
   },
   "dependencies": {
-    "path-key": "^4.0.0",
     "shebang-command": "^2.0.0",
     "which": "^3.0.0"
   },

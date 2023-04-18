@@ -12,7 +12,6 @@ var cp = require('child_process');
 var parse = require('./lib/parse');
 var enoent = require('./lib/enoent');
 /**
- *
  * @description
  * @param {string} command - Command.
  * @param {string[]|import('child_process').SpawnOptions} args - Arguments.
@@ -30,7 +29,6 @@ function spawn(command, args, options) {
     return spawned;
 }
 /**
- *
  * @description
  * @param {string} command - Command.
  * @param {string[]} args - Arguments.
@@ -49,7 +47,6 @@ function spawnSync(command, args, options) {
 }
 /**
  * Spawn asynchronously.
- *
  * @description
  * @param {string} command - Command.
  * @param {string[]} args - Arguments.

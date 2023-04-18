@@ -5,7 +5,7 @@ const fs = require('fs');
 const childProcess = require('child_process');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
-const pkey = require('path-key');
+const pkey = require('../dist/lib/util/pathKey');
 
 const pathKey = pkey.default();
 const run = require('./util/run');

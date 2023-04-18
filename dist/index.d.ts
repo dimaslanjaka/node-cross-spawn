@@ -1,7 +1,6 @@
 /// <reference types="node" />
 export = spawn;
 /**
- *
  * @description
  * @param {string} command - Command.
  * @param {string[]|import('child_process').SpawnOptions} args - Arguments.
@@ -13,7 +12,6 @@ declare namespace spawn {
     export { spawn, spawnSync as sync, spawnAsync as async, parse as _parse, enoent as _enoent };
 }
 /**
- *
  * @description
  * @param {string} command - Command.
  * @param {string[]} args - Arguments.
@@ -23,7 +21,6 @@ declare namespace spawn {
 declare function spawnSync(command: string, args: string[], options?: import('child_process').SpawnOptions): ReturnType<typeof cp.spawnSync>;
 /**
  * Spawn asynchronously.
- *
  * @description
  * @param {string} command - Command.
  * @param {string[]} args - Arguments.

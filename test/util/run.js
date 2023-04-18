@@ -93,6 +93,14 @@ function runAsync(command, args, options) {
     return promise;
 }
 
+/**
+ * run spawn
+ * @param {'sync'|'async'} method
+ * @param {string} command
+ * @param {string[]} args
+ * @param {Parameters<typeof spawn>[2]} options
+ * @returns
+ */
 function run(method, command, args, options) {
     // Are we forcing the shell?
     if (isForceShell(method)) {

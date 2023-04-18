@@ -6,6 +6,9 @@ var readShebang = require('./util/readShebang');
 var isWin = process.platform === 'win32';
 var isExecutableRegExp = /\.(?:com|exe)$/i;
 var isCmdShimRegExp = /node_modules[\\/].bin[\\/][^\\/]+\.cmd$/i;
+/**
+ * @param parsed
+ */
 function detectShebang(parsed) {
     parsed.file = resolveCommand(parsed);
     var shebang = parsed.file && readShebang(parsed.file);
@@ -16,6 +19,9 @@ function detectShebang(parsed) {
     }
     return parsed.file;
 }
+/**
+ * @param parsed
+ */
 function parseNonShell(parsed) {
     if (!isWin) {
         return parsed;
@@ -45,6 +51,11 @@ function parseNonShell(parsed) {
     }
     return parsed;
 }
+/**
+ * @param command
+ * @param args
+ * @param options
+ */
 function parse(command, args, options) {
     // Normalize arguments, similar to nodejs
     if (args && !Array.isArray(args)) {
