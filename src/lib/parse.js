@@ -9,6 +9,9 @@ const isWin = process.platform === 'win32';
 const isExecutableRegExp = /\.(?:com|exe)$/i;
 const isCmdShimRegExp = /node_modules[\\/].bin[\\/][^\\/]+\.cmd$/i;
 
+/**
+ * @param parsed
+ */
 function detectShebang(parsed) {
     parsed.file = resolveCommand(parsed);
 
@@ -24,6 +27,9 @@ function detectShebang(parsed) {
     return parsed.file;
 }
 
+/**
+ * @param parsed
+ */
 function parseNonShell(parsed) {
     if (!isWin) {
         return parsed;
@@ -62,6 +68,11 @@ function parseNonShell(parsed) {
     return parsed;
 }
 
+/**
+ * @param command
+ * @param args
+ * @param options
+ */
 function parse(command, args, options) {
     // Normalize arguments, similar to nodejs
     if (args && !Array.isArray(args)) {

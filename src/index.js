@@ -5,7 +5,6 @@ const parse = require('./lib/parse');
 const enoent = require('./lib/enoent');
 
 /**
- *
  * @description
  * @param {string} command - Command.
  * @param {string[]|import('child_process').SpawnOptions} args - Arguments.
@@ -27,7 +26,6 @@ function spawn(command, args, options) {
 }
 
 /**
- *
  * @description
  * @param {string} command - Command.
  * @param {string[]} args - Arguments.
@@ -50,7 +48,6 @@ function spawnSync(command, args, options) {
 
 /**
  * Spawn asynchronously.
- *
  * @description
  * @param {string} command - Command.
  * @param {string[]} args - Arguments.
