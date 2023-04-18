@@ -1,6 +1,9 @@
 'use strict';
 var fs = require('fs');
 var shebangCommand = require('shebang-command');
+/**
+ * @param command
+ */
 function readShebang(command) {
     // Read the first 150 bytes from the file
     var size = 150;

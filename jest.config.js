@@ -10,9 +10,7 @@ const config = {
         "**/dist/**",
         "**/tmp/**",
         "node_modules",
-        "node_modules/path-key/index.js",
-        "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)",
-        require.resolve("path-key"),
+        "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"
     ],
     testPathIgnorePatterns: [
         "<rootDir>/node_modules",
@@ -23,10 +21,9 @@ const config = {
     ],
     transform: {
         "\\.[jt]sx?$": "babel-jest",
-        "path-key": "babel-jest",
     },
     moduleNameMapper: {
-        "^path-key$": require.resolve("path-key"),
+        //"^path-key$": require.resolve("path-key"),
     },
 };
 

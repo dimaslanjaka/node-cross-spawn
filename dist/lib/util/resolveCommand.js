@@ -1,7 +1,11 @@
 'use strict';
 var path = require('path');
 var which = require('which');
-var getPathKey = require('path-key');
+var getPathKey = require('./pathKey');
+/**
+ * @param parsed
+ * @param withoutPathExt
+ */
 function resolveCommandAttempt(parsed, withoutPathExt) {
     var env = parsed.options.env || process.env;
     var cwd = process.cwd();
@@ -40,6 +44,9 @@ function resolveCommandAttempt(parsed, withoutPathExt) {
     }
     return resolved;
 }
+/**
+ * @param parsed
+ */
 function resolveCommand(parsed) {
     return resolveCommandAttempt(parsed) || resolveCommandAttempt(parsed, true);
 }

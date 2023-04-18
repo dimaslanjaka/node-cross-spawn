@@ -2,7 +2,7 @@
 
 const path = require('path');
 const which = require('which');
-const getPathKey = require('path-key');
+const getPathKey = require('./pathKey');
 
 /**
  * @param parsed

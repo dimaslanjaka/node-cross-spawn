@@ -1,5 +1,9 @@
 'use strict';
 var isWin = process.platform === 'win32';
+/**
+ * @param original
+ * @param syscall
+ */
 function notFoundError(original, syscall) {
     return Object.assign(new Error("".concat(syscall, " ").concat(original.command, " ENOENT")), {
         code: 'ENOENT',
@@ -9,6 +13,10 @@ function notFoundError(original, syscall) {
         spawnargs: original.args,
     });
 }
+/**
+ * @param cp
+ * @param parsed
+ */
 function hookChildProcess(cp, parsed) {
     if (!isWin) {
         return;
@@ -27,12 +35,20 @@ function hookChildProcess(cp, parsed) {
         return originalEmit.apply(cp, arguments); // eslint-disable-line prefer-rest-params
     };
 }
+/**
+ * @param status
+ * @param parsed
+ */
 function verifyENOENT(status, parsed) {
     if (isWin && status === 1 && !parsed.file) {
         return notFoundError(parsed.original, 'spawn');
     }
     return null;
 }
+/**
+ * @param status
+ * @param parsed
+ */
 function verifyENOENTSync(status, parsed) {
     if (isWin && status === 1 && !parsed.file) {
         return notFoundError(parsed.original, 'spawnSync');
