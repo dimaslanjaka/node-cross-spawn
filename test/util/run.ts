@@ -188,7 +188,6 @@ module.exports.isMethodSync = isMethodSync;
 module.exports.isForceShell = isForceShell;
 */
 
-module.exports = run;
 export default run;
 export const methods = [
     "spawn-force-shell",
