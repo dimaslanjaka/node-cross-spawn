@@ -13,6 +13,13 @@
     "execute"
   ],
   "author": "André Cruz <andre@moxy.studio>",
+  "contributors": [
+    {
+      "email": "dimaslanjaka@gmail.com",
+      "name": "Dimas Lanjaka",
+      "url": "https://www.webmanajemen.com"
+    }
+  ],
   "homepage": "https://github.com/moxystudio/node-cross-spawn",
   "repository": {
     "type": "git",
