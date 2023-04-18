@@ -5,7 +5,8 @@ const fs = require('fs');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const childProcess = require('child_process');
-const pathKey = require('path-key')();
+const pkey = require('path-key');
+const pathKey = pkey.default();
 const run = require('./util/run');
 
 const isWin = process.platform === 'win32';
@@ -27,13 +28,19 @@ run.methods.forEach((method) => {
         });
 
         it('should expand using PATHEXT properly', async () => {
-            const { stdout } = await run(method, `${__dirname}/fixtures/say-foo`);
+            const { stdout } = await run(
+                method,
+                `${__dirname}/fixtures/say-foo`,
+            );
 
             expect(stdout.trim()).toBe('foo');
         });
 
         it('should support shebang in executables with `/usr/bin/env`', async () => {
-            const { stdout: stdout1 } = await run(method, `${__dirname}/fixtures/shebang`);
+            const { stdout: stdout1 } = await run(
+                method,
+                `${__dirname}/fixtures/shebang`,
+            );
 
             expect(stdout1).toBe('shebang works!');
 
@@ -41,14 +48,20 @@ run.methods.forEach((method) => {
             const { stdout: stdout2 } = await run(method, 'shebang', {
                 env: {
                     ...process.env,
-                    [pathKey]: path.normalize(`${__dirname}/fixtures`) + path.delimiter + process.env[pathKey],
+                    [pathKey]:
+                        path.normalize(`${__dirname}/fixtures`) +
+                        path.delimiter +
+                        process.env[pathKey],
                 },
             });
 
             expect(stdout2).toBe('shebang works!');
 
             // Test if the actual shebang file is resolved against the process.env.PATH
-            process.env[pathKey] = path.normalize(`${__dirname}/fixtures`) + path.delimiter + process.env[pathKey];
+            process.env[pathKey] =
+                path.normalize(`${__dirname}/fixtures`) +
+                path.delimiter +
+                process.env[pathKey];
 
             // Need to do a little hack for unix because of a Jest bug
             // Remove this later when it's solved: https://github.com/facebook/jest/issues/5362
@@ -56,10 +69,20 @@ run.methods.forEach((method) => {
                 const originalSpawn = childProcess.spawn;
                 const originalSpawnSync = childProcess.spawnSync;
 
-                jest.spyOn(childProcess, 'spawn').mockImplementation((command, args, options) =>
-                    originalSpawn(command, args, { ...options, env: process.env }));
-                jest.spyOn(childProcess, 'spawnSync').mockImplementation((command, args, options) =>
-                    originalSpawnSync(command, args, { ...options, env: process.env }));
+                jest.spyOn(childProcess, 'spawn').mockImplementation(
+                    (command, args, options) =>
+                        originalSpawn(command, args, {
+                            ...options,
+                            env: process.env,
+                        }),
+                );
+                jest.spyOn(childProcess, 'spawnSync').mockImplementation(
+                    (command, args, options) =>
+                        originalSpawnSync(command, args, {
+                            ...options,
+                            env: process.env,
+                        }),
+                );
             }
 
             const { stdout: stdout3 } = await run(method, 'shebang');
@@ -71,14 +94,17 @@ run.methods.forEach((method) => {
             fs.writeFileSync(
                 `${__dirname}/fixtures/()%!^&;, `,
                 fs.readFileSync(`${__dirname}/fixtures/pre_()%!^&;, .sh`),
-                { mode: 0o0777 }
+                { mode: 0o0777 },
             );
             fs.writeFileSync(
                 `${__dirname}/fixtures/()%!^&;, .bat`,
-                fs.readFileSync(`${__dirname}/fixtures/pre_()%!^&;, .bat`)
+                fs.readFileSync(`${__dirname}/fixtures/pre_()%!^&;, .bat`),
             );
 
-            const { stdout } = await run(method, `${__dirname}/fixtures/()%!^&;, `);
+            const { stdout } = await run(
+                method,
+                `${__dirname}/fixtures/()%!^&;, `,
+            );
 
             expect(stdout.trim()).toBe('special');
         });
@@ -131,7 +157,7 @@ run.methods.forEach((method) => {
                 'foo',
                 '=`',
                 'foo',
-                '\'',
+                "'",
                 'foo',
                 '\\"',
                 'bar\\',
@@ -140,7 +166,11 @@ run.methods.forEach((method) => {
                 '"(foo|bar>baz|foz)"',
             ];
 
-            const { stdout } = await run(method, 'node', [`${__dirname}/fixtures/echo`].concat(args));
+            const { stdout } = await run(
+                method,
+                'node',
+                [`${__dirname}/fixtures/echo`].concat(args),
+            );
 
             expect(stdout).toBe(args.join('\n'));
         });
@@ -148,12 +178,18 @@ run.methods.forEach((method) => {
         if (isWin) {
             it('should double escape when executing `node_modules/.bin/<file>.cmd`', async () => {
                 mkdirp.sync(`${__dirname}/fixtures/node_modules/.bin`);
-                fs.writeFileSync(`${__dirname}/fixtures/node_modules/.bin/echo-cmd-shim.cmd`,
-                    fs.readFileSync(`${__dirname}/fixtures/echo-cmd-shim.cmd`));
+                fs.writeFileSync(
+                    `${__dirname}/fixtures/node_modules/.bin/echo-cmd-shim.cmd`,
+                    fs.readFileSync(`${__dirname}/fixtures/echo-cmd-shim.cmd`),
+                );
 
                 const arg = '"(foo|bar>baz|foz)"';
 
-                const { stdout } = await run(method, `${__dirname}/fixtures/node_modules/.bin/echo-cmd-shim`, [arg]);
+                const { stdout } = await run(
+                    method,
+                    `${__dirname}/fixtures/node_modules/.bin/echo-cmd-shim`,
+                    [arg],
+                );
 
                 expect(stdout).toBe(arg);
             });
@@ -166,15 +202,27 @@ run.methods.forEach((method) => {
         });
 
         it('should handle optional spawn optional arguments correctly', async () => {
-            const { stdout: stdout1 } = await run(method, `${__dirname}/fixtures/say-foo`);
+            const { stdout: stdout1 } = await run(
+                method,
+                `${__dirname}/fixtures/say-foo`,
+            );
 
             expect(stdout1.trim()).toBe('foo');
 
-            const { stdout: stdout2 } = await run(method, `${__dirname}/fixtures/say-foo`, { stdio: 'ignore' });
+            const { stdout: stdout2 } = await run(
+                method,
+                `${__dirname}/fixtures/say-foo`,
+                { stdio: 'ignore' },
+            );
 
             expect(stdout2).toBe(null);
 
-            const { stdout: stdout3 } = await run(method, `${__dirname}/fixtures/say-foo`, null, { stdio: 'ignore' });
+            const { stdout: stdout3 } = await run(
+                method,
+                `${__dirname}/fixtures/say-foo`,
+                null,
+                { stdio: 'ignore' },
+            );
 
             expect(stdout3).toBe(null);
         });
@@ -200,13 +248,21 @@ run.methods.forEach((method) => {
         });
 
         it('should work with a relative posix path to a command', async () => {
-            const relativeFixturesPath = path.relative(process.cwd(), `${__dirname}/fixtures`).replace(/\\/, '/');
+            const relativeFixturesPath = path
+            .relative(process.cwd(), `${__dirname}/fixtures`)
+            .replace(/\\/, '/');
 
-            const { stdout: stdout1 } = await run(method, `${relativeFixturesPath}/say-foo`);
+            const { stdout: stdout1 } = await run(
+                method,
+                `${relativeFixturesPath}/say-foo`,
+            );
 
             expect(stdout1.trim()).toBe('foo');
 
-            const { stdout: stdout2 } = await run(method, `./${relativeFixturesPath}/say-foo`);
+            const { stdout: stdout2 } = await run(
+                method,
+                `./${relativeFixturesPath}/say-foo`,
+            );
 
             expect(stdout2.trim()).toBe('foo');
 
@@ -214,19 +270,30 @@ run.methods.forEach((method) => {
                 return;
             }
 
-            const { stdout: stdout3 } = await run(method, `./${relativeFixturesPath}/say-foo.bat`);
+            const { stdout: stdout3 } = await run(
+                method,
+                `./${relativeFixturesPath}/say-foo.bat`,
+            );
 
             expect(stdout3.trim()).toBe('foo');
         });
 
         it('should work with a relative posix path to a command with a custom `cwd`', async () => {
-            const relativeTestPath = path.relative(process.cwd(), __dirname).replace(/\\/, '/');
+            const relativeTestPath = path
+            .relative(process.cwd(), __dirname)
+            .replace(/\\/, '/');
 
-            const { stdout: stdout1 } = await run(method, 'fixtures/say-foo', { cwd: relativeTestPath });
+            const { stdout: stdout1 } = await run(method, 'fixtures/say-foo', {
+                cwd: relativeTestPath,
+            });
 
             expect(stdout1.trim()).toBe('foo');
 
-            const { stdout: stdout2 } = await run(method, './fixtures/say-foo', { cwd: `./${relativeTestPath}` });
+            const { stdout: stdout2 } = await run(
+                method,
+                './fixtures/say-foo',
+                { cwd: `./${relativeTestPath}` },
+            );
 
             expect(stdout2.trim()).toBe('foo');
 
@@ -234,14 +301,20 @@ run.methods.forEach((method) => {
                 return;
             }
 
-            const { stdout: stdout3 } = await run(method, './fixtures/say-foo.bat', { cwd: `./${relativeTestPath}` });
+            const { stdout: stdout3 } = await run(
+                method,
+                './fixtures/say-foo.bat',
+                { cwd: `./${relativeTestPath}` },
+            );
 
             expect(stdout3.trim()).toBe('foo');
         });
 
         {
             const assertError = (err) => {
-                const syscall = run.isMethodSync(method) ? 'spawnSync' : 'spawn';
+                const syscall = run.isMethodSync(method) ?
+                    'spawnSync' :
+                    'spawn';
 
                 expect(err.message).toMatch(syscall);
                 expect(err.message).toMatch('ENOENT');
@@ -269,15 +342,18 @@ run.methods.forEach((method) => {
                     expect.assertions(11);
 
                     await new Promise((resolve, reject) => {
-                        const promise = run(method, 'somecommandthatwillneverexist', ['foo']);
+                        const promise = run(
+                            method,
+                            'somecommandthatwillneverexist',
+                            ['foo'],
+                        );
                         const { cp } = promise;
 
-                        promise.catch(() => { });
+                        promise.catch(() => {});
 
                         let timeout;
 
-                        cp
-                        .on('error', assertError)
+                        cp.on('error', assertError)
                         .on('exit', () => {
                             cp.removeAllListeners();
                             clearTimeout(timeout);
@@ -310,13 +386,12 @@ run.methods.forEach((method) => {
                     const promise = run(method, `${__dirname}/fixtures/exit-1`);
                     const { cp } = promise;
 
-                    promise.catch(() => { });
+                    promise.catch(() => {});
 
-                    const onExit = jest.fn(() => { });
+                    const onExit = jest.fn(() => {});
                     let timeout;
 
-                    cp
-                    .on('error', () => {
+                    cp.on('error', () => {
                         cp.removeAllListeners();
                         clearTimeout(timeout);
                         reject(new Error('Should not emit error'));
@@ -347,16 +422,18 @@ run.methods.forEach((method) => {
         } else {
             it('should NOT emit `error` if shebang command does not exist', async () => {
                 await new Promise((resolve, reject) => {
-                    const promise = run(method, `${__dirname}/fixtures/shebang-enoent`);
+                    const promise = run(
+                        method,
+                        `${__dirname}/fixtures/shebang-enoent`,
+                    );
                     const { cp } = promise;
 
-                    promise.catch(() => { });
+                    promise.catch(() => {});
 
-                    const onExit = jest.fn(() => { });
+                    const onExit = jest.fn(() => {});
                     let timeout;
 
-                    cp
-                    .on('error', () => {
+                    cp.on('error', () => {
                         cp.removeAllListeners();
                         clearTimeout(timeout);
                         reject(new Error('Should not emit error'));
@@ -379,7 +456,9 @@ run.methods.forEach((method) => {
                 expect.assertions(1);
 
                 try {
-                    run(method, 'fixtures/say-foo', { cwd: 'somedirthatwillneverexist' });
+                    run(method, 'fixtures/say-foo', {
+                        cwd: 'somedirthatwillneverexist',
+                    });
                 } catch (err) {
                     expect(err.code).toBe('ENOENT');
                 }
@@ -389,15 +468,18 @@ run.methods.forEach((method) => {
                 expect.assertions(3);
 
                 await new Promise((resolve, reject) => {
-                    const promise = run(method, 'somecommandthatwillneverexist', ['foo']);
+                    const promise = run(
+                        method,
+                        'somecommandthatwillneverexist',
+                        ['foo'],
+                    );
                     const { cp } = promise;
 
-                    promise.catch(() => { });
+                    promise.catch(() => {});
 
                     let timeout;
 
-                    cp
-                    .on('error', (err) => expect(err.code).toBe('ENOENT'))
+                    cp.on('error', (err) => expect(err.code).toBe('ENOENT'))
                     .on('exit', () => {
                         cp.removeAllListeners();
                         clearTimeout(timeout);
@@ -414,14 +496,21 @@ run.methods.forEach((method) => {
         }
 
         if (isWin) {
-            it('should use nodejs\' spawn when options.shell is specified (windows)', async () => {
-                const { stdout } = await run(method, 'echo', ['%RANDOM%'], { shell: true });
+            it("should use nodejs' spawn when options.shell is specified (windows)", async () => {
+                const { stdout } = await run(method, 'echo', ['%RANDOM%'], {
+                    shell: true,
+                });
 
                 expect(stdout.trim()).toMatch(/\d+/);
             });
         } else {
-            it('should use nodejs\' spawn when options.shell is specified (linux)', async () => {
-                const { stdout } = await run(method, 'echo', ['hello &&', 'echo there'], { shell: true });
+            it("should use nodejs' spawn when options.shell is specified (linux)", async () => {
+                const { stdout } = await run(
+                    method,
+                    'echo',
+                    ['hello &&', 'echo there'],
+                    { shell: true },
+                );
 
                 expect(stdout.trim()).toEqual('hello\nthere');
             });
@@ -429,7 +518,10 @@ run.methods.forEach((method) => {
 
         if (isWin && !run.isForceShell(method)) {
             it('should NOT spawn a shell for a .exe', async () => {
-                const { stdout } = await run(method, `${__dirname}/fixtures/win-ppid.js`);
+                const { stdout } = await run(
+                    method,
+                    `${__dirname}/fixtures/win-ppid.js`,
+                );
 
                 expect(Number(stdout.trim())).toBe(process.pid);
             });
