@@ -1,24 +1,72 @@
-'use strict';
-
-// Unit tests in `lib/` must get the same config as `test/.eslintrc`, but ESLint 5 doesn't support
-// `extends` in `overrides`, so we apply what `es9` adds on top of `es6` manually
-const es7 = require('eslint-config-moxy/es7');
-const es8 = require('eslint-config-moxy/es8');
-const es9 = require('eslint-config-moxy/es9');
-
-module.exports = {
+/**
+ * @type {import('eslint').Linter.Config}
+ */
+const cfg = {
     root: true,
-    extends: [
-        'eslint-config-moxy/es6',
-        'eslint-config-moxy/addons/node',
-        // Only enabled for test files, such as `lib/**/*.test.js`
-        'eslint-config-moxy/addons/jest',
-    ],
-    overrides: [
-        {
-            files: ['lib/**/*.test.js'],
-            parserOptions: es9.parserOptions,
-            rules: Object.assign({}, es7.rules, es8.rules, es9.rules),
-        },
-    ],
+    env: {
+        es2020: true,
+    },
+    parserOptions: {
+        ecmaVersion: 2020,
+    },
+    rules: {
+        // Enforces error handling in callbacks
+        "handle-callback-err": "warn",
+        // Disallow new operators with calls to require
+        "no-new-require": "error",
+        // Require braces around arrow function bodies
+        "arrow-body-style": ["error", "as-needed"],
+        // Require parentheses around arrow function arguments
+        "arrow-parens": ["error", "always"],
+        // Enforce consistent spacing before and after the arrow in arrow functions
+        "arrow-spacing": ["error", { before: true, after: true }],
+        // Require super() calls in constructors
+        "constructor-super": "error",
+        // Enforce consistent spacing around * operators in generator functions
+        "generator-star-spacing": ["error", { before: false, after: true }],
+        // Disallow reassigning class members
+        "no-class-assign": "error",
+        // Disallow reassigning const variables
+        "no-const-assign": "error",
+        // Disallow duplicate class members
+        "no-dupe-class-members": "error",
+        // Disallow duplicate module imports
+        "no-duplicate-imports": "error",
+        // Disallow new operators with the Symbol object
+        "no-new-symbol": "error",
+        // Disallow this/super before calling super() in constructors
+        "no-this-before-super": "warn",
+        // Disallow unnecessary computed property keys in object literals
+        "no-useless-computed-key": "error",
+        // Disallow unnecessary constructors
+        "no-useless-constructor": "error",
+        // Disallow renaming import, export, and destructured assignments to the same name
+        "no-useless-rename": "error",
+        // Require let or const instead of var
+        "no-var": "error",
+        // Require or disallow method and property shorthand syntax for object literals
+        "object-shorthand": ["error", "always"],
+        // Require arrow functions as callbacks
+        "prefer-arrow-callback": "error",
+        // Require const declarations for variables that are never reassigned after declared
+        "prefer-const": "error",
+        // Disallow parseInt() in favor of binary, octal, and hexadecimal literals
+        "prefer-numeric-literals": "error",
+        // Require rest parameters instead of arguments
+        "prefer-rest-params": "error",
+        // Require spread operators instead of .apply()
+        "prefer-spread": "error",
+        // Require template literals instead of string concatenation
+        "prefer-template": "warn",
+        // Require generator functions to contain yield
+        "require-yield": "error",
+        // Enforce spacing between rest and spread operators and their expressions
+        "rest-spread-spacing": ["error", "never"],
+        // Require or disallow spacing around embedded expressions of template strings
+        "template-curly-spacing": ["error", "never"],
+        // Require or disallow spacing around the * in yield* expressions
+        "yield-star-spacing": ["error", { before: false, after: true }],
+    },
 };
+
+module.exports = cfg;
