@@ -1,9 +1,8 @@
-'use strict';
+"use strict";
 
-const cp = require('child_process');
-const parse = require('./lib/parse');
-const enoent = require('./lib/enoent');
-
+const cp = require("child_process");
+const parse = require("./lib/parse");
+const enoent = require("./lib/enoent");
 
 /**
  *
@@ -43,7 +42,8 @@ function spawnSync(command, args, options) {
     const result = cp.spawnSync(parsed.command, parsed.args, parsed.options);
 
     // Analyze if the command does not exist, see: https://github.com/IndigoUnited/node-cross-spawn/issues/16
-    result.error = result.error || enoent.verifyENOENTSync(result.status, parsed);
+    result.error =
+        result.error || enoent.verifyENOENTSync(result.status, parsed);
 
     return result;
 }
@@ -59,27 +59,27 @@ function spawnSync(command, args, options) {
  */
 function spawnAsync(command, args, options) {
     return new Promise((resolve) => {
-        let stdout = '';
-        let stderr = '';
+        let stdout = "";
+        let stderr = "";
         const child = spawn(command, args, options);
 
         // Capture stdout
-        if (child.stdout && 'on' in child.stdout) {
-            child.stdout.setEncoding('utf8');
-            child.stdout.on('data', (data) => {
+        if (child.stdout && "on" in child.stdout) {
+            child.stdout.setEncoding("utf8");
+            child.stdout.on("data", (data) => {
                 stdout += data;
             });
         }
 
         // Capture stderr
-        if (child.stderr && 'on' in child.stdout) {
-            child.stderr.setEncoding('utf8');
-            child.stderr.on('data', (data) => {
+        if (child.stderr && "on" in child.stdout) {
+            child.stderr.setEncoding("utf8");
+            child.stderr.on("data", (data) => {
                 stderr += data;
             });
         }
 
-        child.on('close', (code, signal) => {
+        child.on("close", (code, signal) => {
             // Should probably be 'exit', not 'close'
             /* if (code !== 0) {
                 console.log('[ERROR]', command, ...args, 'dies with code', code, 'signal', signal);
@@ -88,7 +88,17 @@ function spawnAsync(command, args, options) {
             resolve({
                 stdout,
                 stderr,
-                err: code !== 0 ? [command, ...args, 'dies with code', code, 'signal', signal].join(' ') : null,
+                err:
+                    code !== 0
+                        ? [
+                              command,
+                              ...args,
+                              "dies with code",
+                              code,
+                              "signal",
+                              signal,
+                          ].join(" ")
+                        : null,
             });
         });
 

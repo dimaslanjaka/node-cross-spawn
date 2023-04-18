@@ -1,6 +1,10 @@
 {
     "presets": [
-        ["babel-preset-moxy/lib", {
-            "lodash": false }
-        ]]
+        [
+            "babel-preset-moxy/lib",
+            {
+                "lodash": false
+            }
+        ]
+    ]
 }
