@@ -31,7 +31,9 @@
   "files": [
     "dist",
     "dist/lib",
-    "dist/lib/util"
+    "dist/lib/util",
+    "!package-lock.json",
+    "!yarn.lock"
   ],
   "scripts": {
     "update:packer": "curl -L https://github.com/dimaslanjaka/nodejs-package-types/raw/main/packer.js > packer.js",
