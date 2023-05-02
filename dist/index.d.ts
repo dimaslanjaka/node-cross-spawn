@@ -9,7 +9,7 @@ export = spawn;
  */
 declare function spawn(command: string, args: string[] | import('child_process').SpawnOptions, options?: import('child_process').SpawnOptions): import('child_process').ChildProcess;
 declare namespace spawn {
-    export { spawn, spawnSync as sync, spawnAsync as async, parse as _parse, enoent as _enoent };
+    export { spawn, spawnSync as sync, spawnAsync as async, spawnSync, spawnAsync, parse as _parse, enoent as _enoent };
 }
 /**
  * @description

@@ -104,5 +104,7 @@ module.exports = spawn;
 module.exports.spawn = spawn;
 module.exports.sync = spawnSync;
 module.exports.async = spawnAsync;
+module.exports.spawnSync = spawnSync;
+module.exports.spawnAsync = spawnAsync;
 module.exports._parse = parse;
 module.exports._enoent = enoent;
