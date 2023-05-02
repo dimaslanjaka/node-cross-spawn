@@ -44,7 +44,8 @@
     "release": "standard-version",
     "post-release": "git push --follow-tags origin HEAD && npm publish",
     "pack": "node packer.js",
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
