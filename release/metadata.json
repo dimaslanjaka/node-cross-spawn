@@ -1,21 +1,21 @@
 {
   "/release/cross-spawn-7.0.4.tgz": {
     "integrity": {
-      "sha1": "d8ae697d50f6522890fa357c5e6fa92d5bac856a",
-      "sha256": "vqU5h68/SNkkTFFAmtRI7LVXTef5L4bRjyeSPZri9Kw=",
-      "md5": "0c902787fc7b2f9520eb942f978007ce",
-      "sha512": "qWSMxrvgde4ccGqJfDCd1Cw0zJBXDWhgUTiS3rcwaAW1/CWTb1Fatj3hm6VDLvh5LG8E5H1qTrpvn1a/aLbZ1w=="
+      "sha1": "00798e3bf481c1a8ddcc12158ed3a6cb1941dced",
+      "sha256": "8UrCvPkSfall2jtZJDtov7lHWEE7EgMrbCHZHRsfglI=",
+      "md5": "55448a1e74a377ca395e113e71d8a63a",
+      "sha512": "w76ir2WNQKEBhAZAiuiKyOCmfKF2xh0Mow/Gi3wEBSrUXYgwprNphmWKAIDZg+Pt+tDLnHVF0Op17JDcSp1IAQ=="
     },
-    "size": "8.70 KB"
+    "size": "8.80 KB"
   },
   "/release/cross-spawn.tgz": {
     "integrity": {
-      "sha1": "d8ae697d50f6522890fa357c5e6fa92d5bac856a",
-      "sha256": "vqU5h68/SNkkTFFAmtRI7LVXTef5L4bRjyeSPZri9Kw=",
-      "md5": "0c902787fc7b2f9520eb942f978007ce",
-      "sha512": "qWSMxrvgde4ccGqJfDCd1Cw0zJBXDWhgUTiS3rcwaAW1/CWTb1Fatj3hm6VDLvh5LG8E5H1qTrpvn1a/aLbZ1w=="
+      "sha1": "00798e3bf481c1a8ddcc12158ed3a6cb1941dced",
+      "sha256": "8UrCvPkSfall2jtZJDtov7lHWEE7EgMrbCHZHRsfglI=",
+      "md5": "55448a1e74a377ca395e113e71d8a63a",
+      "sha512": "w76ir2WNQKEBhAZAiuiKyOCmfKF2xh0Mow/Gi3wEBSrUXYgwprNphmWKAIDZg+Pt+tDLnHVF0Op17JDcSp1IAQ=="
     },
-    "size": "8.70 KB"
+    "size": "8.80 KB"
   },
   "/package-lock.json": {
     "integrity": {
