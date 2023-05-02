@@ -146,7 +146,7 @@ function bundleWithYarn() {
 	}
 
 	if (withFilename) {
-		const tgzlatest = join(releaseDir, targetFname + ".tgz");
+		const tgzlatest = join(releaseDir, `${targetFname}.tgz`);
 		if (fs.existsSync(tgz)) {
 			fs.copySync(tgz, tgzlatest, { overwrite: true });
 		}
