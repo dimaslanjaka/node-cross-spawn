@@ -43,7 +43,8 @@
     "pre-release": "npm t && npm run lint",
     "release": "standard-version",
     "post-release": "git push --follow-tags origin HEAD && npm publish",
-    "pack": "node packer.js"
+    "pack": "node packer.js",
+    "build": "tsc --build"
   },
   "husky": {
     "hooks": {
