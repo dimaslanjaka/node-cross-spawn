@@ -24,10 +24,10 @@ declare function spawnSync(command: string, args: string[], options?: import('ch
  * @description
  * @param {string} command - Command.
  * @param {string[]} args - Arguments.
- * @param {import('child_process').SpawnOptions} options - Spawn Options.
+ * @param {import('child_process').SpawnOptions} [options] - Spawn Options.
  * @returns {Promise<{ stdout: string, stderr: string, output: string, err: string | null }>} Return Promise.
  */
-declare function spawnAsync(command: string, args: string[], options: import('child_process').SpawnOptions): Promise<{
+declare function spawnAsync(command: string, args: string[], options?: import('child_process').SpawnOptions): Promise<{
     stdout: string;
     stderr: string;
     output: string;

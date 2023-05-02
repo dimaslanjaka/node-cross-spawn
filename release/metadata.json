@@ -1,29 +1,29 @@
 {
   "/release/cross-spawn-7.0.4.tgz": {
     "integrity": {
-      "sha1": "00798e3bf481c1a8ddcc12158ed3a6cb1941dced",
-      "sha256": "8UrCvPkSfall2jtZJDtov7lHWEE7EgMrbCHZHRsfglI=",
-      "md5": "55448a1e74a377ca395e113e71d8a63a",
-      "sha512": "w76ir2WNQKEBhAZAiuiKyOCmfKF2xh0Mow/Gi3wEBSrUXYgwprNphmWKAIDZg+Pt+tDLnHVF0Op17JDcSp1IAQ=="
+      "sha1": "14c4f273f2a83cd525c97663bb2524afa03fb0e2",
+      "sha256": "LOMvHsACBY5d3gOEv0XCx96rS3vrxyiuFtV7exc4+lE=",
+      "md5": "3d4c4da6f0aad008feca8a10b47c2e9c",
+      "sha512": "k1njYIcsmdjB9/ti9V0/hxEAm2KtgiL+PiW8oDGeNuDL3PBIxg2hYRjyoaXr3G/M/+HjFn/75uwIm7iMxfGl5A=="
     },
-    "size": "8.80 KB"
+    "size": "8.78 KB"
   },
   "/release/cross-spawn.tgz": {
     "integrity": {
-      "sha1": "00798e3bf481c1a8ddcc12158ed3a6cb1941dced",
-      "sha256": "8UrCvPkSfall2jtZJDtov7lHWEE7EgMrbCHZHRsfglI=",
-      "md5": "55448a1e74a377ca395e113e71d8a63a",
-      "sha512": "w76ir2WNQKEBhAZAiuiKyOCmfKF2xh0Mow/Gi3wEBSrUXYgwprNphmWKAIDZg+Pt+tDLnHVF0Op17JDcSp1IAQ=="
+      "sha1": "14c4f273f2a83cd525c97663bb2524afa03fb0e2",
+      "sha256": "LOMvHsACBY5d3gOEv0XCx96rS3vrxyiuFtV7exc4+lE=",
+      "md5": "3d4c4da6f0aad008feca8a10b47c2e9c",
+      "sha512": "k1njYIcsmdjB9/ti9V0/hxEAm2KtgiL+PiW8oDGeNuDL3PBIxg2hYRjyoaXr3G/M/+HjFn/75uwIm7iMxfGl5A=="
     },
-    "size": "8.80 KB"
+    "size": "8.78 KB"
   },
   "/package-lock.json": {
     "integrity": {
-      "sha1": "53db06dc41cb55b7cb7122ccc3b9969d5762b0da",
-      "sha256": "E64VMQtMP0ndyRYw+5zZNShlWwLbb2QKzw4d9puRyus=",
-      "md5": "fe453782d4651d7be259ca0a537b1383",
-      "sha512": "LYEsB7rjPhszGuF5W1TxnllaCWXHiBGzgVgWwcv+3vH5C/QLJeoyXmyCfr6HtMuoy0M1i+CZRdHCmTHDa3Efgg=="
+      "sha1": "c7adccfd58c58c7193eaa211b67a62a934a1cde4",
+      "sha256": "kJswuduSkMSR38r/bdMds0fLPaXWcctpnnQ3sJ9LvsI=",
+      "md5": "6c314681235590e43aca3250f710e883",
+      "sha512": "582sUvkF+5KBxluMARVFfJ+a0ksV/lXhrY4tGGe5Mw7lydVuRopxYDUp8+8FZ/j/Bw1uPUP4bJ6diDMFpYO0ng=="
     },
-    "size": "1053.98 KB"
+    "size": "894.31 KB"
   }
 }
