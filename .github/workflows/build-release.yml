@@ -132,7 +132,11 @@ jobs:
         continue-on-error: true
         run: |
           curl -L https://github.com/dimaslanjaka/nodejs-package-types/raw/main/postinstall.js > postinstall.js
-          npm run update
+          if [ -f "package-lock.json" ]; then
+              node postinstall.js
+          else
+              node postinstall.js --yarn
+          fi
 
       - name: Install Global Packages
         run: npm i -g typescript ts-node gulp-cli hexo-cli webpack-cli
@@ -140,8 +144,7 @@ jobs:
 
       - name: Install Legacy Peer Dependencies
         run: |
-          FILE=package-lock.json
-          if [ -f "$FILE" ]; then
+          if [ -f "package-lock.json" ]; then
               npm install --legacy-peer-deps
           else
               yarn install
