@@ -15,6 +15,7 @@ export declare function spawn(command: string, args: string[] | cp.SpawnOptions,
  * return of require('child_process').spawnSync
  */
 export interface spawnSyncReturn {
+    [key: string]: any;
     status: number;
     signal: any;
     output: (null | Buffer)[];
