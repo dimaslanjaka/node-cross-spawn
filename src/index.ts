@@ -11,7 +11,7 @@ import parse from './lib/parse';
  * @param options - Spawn Options.
  * @returns Return Promise.
  */
-function spawn(
+export function spawn(
   command: string,
   args: string[] | cp.SpawnOptions,
   options?: import('child_process').SpawnOptions
@@ -32,7 +32,7 @@ function spawn(
 /**
  * return of require('child_process').spawnSync
  */
-interface spawnSyncReturn {
+export interface spawnSyncReturn {
   status: number;
   signal: null | any;
   output: (null | Buffer)[];
@@ -49,7 +49,7 @@ interface spawnSyncReturn {
  * @param options - Spawn Options.
  * @returns Return Promise.
  */
-function spawnSync(
+export function spawnSync(
   command: string,
   args: string[],
   options: cp.SpawnOptions
@@ -74,7 +74,7 @@ function spawnSync(
  * @param options - Spawn Options.
  * @returns Return Promise.
  */
-function spawnAsync(
+export function spawnAsync(
   command: string,
   args: string[],
   options: import('child_process').SpawnOptions
@@ -124,9 +124,10 @@ function spawnAsync(
 
 module.exports = spawn;
 module.exports.spawn = spawn;
-module.exports.sync = spawnSync;
-module.exports.async = spawnAsync;
-module.exports.spawnSync = spawnSync;
-module.exports.spawnAsync = spawnAsync;
 module.exports._parse = parse;
 module.exports._enoent = enoent;
+export default spawn;
+export const _enoent = enoent;
+export const _parse = parse;
+export const async = spawnAsync;
+export const sync = spawnSync;
