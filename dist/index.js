@@ -22,20 +22,24 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var spawn = __importStar(require("./spawn"));
-__exportStar(require("./spawn"), exports);
-exports.default = spawn;
+exports._enoent = exports._parse = exports.spawnAsync = exports.spawnSync = exports.async = exports.sync = exports.spawn = void 0;
+var internalSpawn = __importStar(require("./spawn"));
 if (typeof module !== 'undefined' && 'exports' in module) {
-    module.exports = spawn.default;
-    module.exports.spawn = spawn.spawn;
-    module.exports.sync = spawn.spawnSync;
-    module.exports.async = spawn.spawnAsync;
-    module.exports.spawnSync = spawn.spawnSync;
-    module.exports.spawnAsync = spawn.spawnAsync;
-    module.exports._parse = spawn._parse;
-    module.exports._enoent = spawn._enoent;
+    module.exports = internalSpawn.spawn;
+    module.exports.spawn = internalSpawn.spawn;
+    module.exports.sync = internalSpawn.spawnSync;
+    module.exports.async = internalSpawn.spawnAsync;
+    module.exports.spawnSync = internalSpawn.spawnSync;
+    module.exports.spawnAsync = internalSpawn.spawnAsync;
+    module.exports._parse = internalSpawn._parse;
+    module.exports._enoent = internalSpawn._enoent;
 }
+exports.spawn = internalSpawn.spawn;
+exports.sync = internalSpawn.spawnSync;
+exports.async = internalSpawn.spawnAsync;
+exports.spawnSync = internalSpawn.spawnSync;
+exports.spawnAsync = internalSpawn.spawnAsync;
+exports._parse = internalSpawn._parse;
+exports._enoent = internalSpawn._enoent;
+exports.default = internalSpawn;
