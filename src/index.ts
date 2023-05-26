@@ -5,7 +5,7 @@ export * from './spawn';
 export default spawn;
 
 if (typeof module !== 'undefined' && 'exports' in module) {
-  module.exports = spawn.default;
+  module.exports = spawn.spawn;
   module.exports.spawn = spawn.spawn;
   module.exports.sync = spawn.spawnSync;
   module.exports.async = spawn.spawnAsync;

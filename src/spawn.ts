@@ -119,7 +119,6 @@ export function spawnAsync(
   });
 }
 
-export default spawn;
 export const _enoent = enoent;
 export const _parse = parse;
 export const async = spawnAsync;
