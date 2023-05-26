@@ -1,5 +1,6 @@
 /// <reference types="node" />
 /// <reference types="node" />
+/// <reference types="node" />
 import cp from 'child_process';
 import enoent from './lib/enoent';
 import parse from './lib/parse';
@@ -14,7 +15,7 @@ export declare function spawn(command: string, args: string[] | cp.SpawnOptions,
 /**
  * return of require('child_process').spawnSync
  */
-export type spawnSyncReturn = ReturnType<typeof cp.spawnSync> | {
+export type spawnSyncReturn = cp.SpawnSyncReturns<Buffer | string> | {
     [key: string]: any;
     status: number;
     signal: any;
