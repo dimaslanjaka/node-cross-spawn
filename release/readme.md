@@ -1,6 +1,23 @@
-# Release `cross-spawn` Tarball
+# Release `cross-spawn` tarball
+## Releases
+| version | tarball url |
+| :--- | :--- |
+| 7.0.4 | https://github.com/dimaslanjaka/node-cross-spawn/raw/2cf620b/release/cross-spawn-7.0.4.tgz |
+| latest | https://github.com/dimaslanjaka/node-cross-spawn/raw/2cf620b/release/cross-spawn.tgz |
+| latest | https://github.com/dimaslanjaka/node-cross-spawn/raw/private/release/cross-spawn.tgz |
 
-## Get URL of `cross-spawn` Release Tarball
+use this tarball with `resolutions`:
+```json
+{
+  "resolutions": {
+    "cross-spawn": "<url of tarball>"
+  }
+}
+```
+
+## Releases
+
+    ## Get URL of `cross-spawn` Release Tarball
 - select tarball file
 ![gambar](https://user-images.githubusercontent.com/12471057/203216375-8af4b5d9-00c2-40fb-8d3d-d220beaabd46.png)
 - copy raw url
