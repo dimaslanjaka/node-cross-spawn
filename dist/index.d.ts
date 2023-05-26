@@ -16,12 +16,12 @@ export declare function spawn(command: string, args: string[] | cp.SpawnOptions,
  */
 export interface spawnSyncReturn {
     status: number;
-    signal: null | any;
+    signal: any;
     output: (null | Buffer)[];
     pid: number;
     stdout: Buffer;
     stderr: Buffer;
-    error: null | any;
+    error: any;
 }
 /**
  * @description
