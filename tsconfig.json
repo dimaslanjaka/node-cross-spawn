@@ -20,6 +20,9 @@
     // "Go to Definition" in VSCode
     "declarationMap": true,
     // enable ESModule
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    // skip installed module types
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
   }
 }
