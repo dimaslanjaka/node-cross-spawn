@@ -31,6 +31,7 @@ export function spawn(
  * return of require('child_process').spawnSync
  */
 export interface spawnSyncReturn {
+  [key: string]: any;
   status: number;
   signal: any;
   output: (null | Buffer)[];
