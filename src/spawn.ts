@@ -55,7 +55,7 @@ export function spawnSync(command: string, args: string[], options?: cp.SpawnOpt
   const parsed = parse(command, args, options);
 
   // Spawn the child process
-  const result = cp.spawnSync(parsed.command, parsed.args, parsed.options);
+  const result = cp.spawnSync(parsed.command, parsed.args, parsed.options) as spawnSyncReturn;
 
   // Analyze if the command does not exist, see: https://github.com/IndigoUnited/node-cross-spawn/issues/16
   result.error = result.error || enoent.verifyENOENTSync(result.status, parsed);
