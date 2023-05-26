@@ -1,7 +1,7 @@
 {
   // include source
   "include": [
-    "src/index.js"
+    "src"
   ],
   // excludes
   "exclude": ["**/dist/**", "**/node_modules/**"],
