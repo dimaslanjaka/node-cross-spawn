@@ -30,16 +30,18 @@ export function spawn(
 /**
  * return of require('child_process').spawnSync
  */
-export interface spawnSyncReturn {
-  [key: string]: any;
-  status: number;
-  signal: any;
-  output: (null | Buffer)[];
-  pid: number;
-  stdout: Buffer;
-  stderr: Buffer;
-  error: any;
-}
+export type spawnSyncReturn =
+  | ReturnType<typeof cp.spawnSync>
+  | {
+      [key: string]: any;
+      status: number;
+      signal: any;
+      output: (null | Buffer)[];
+      pid: number;
+      stdout: Buffer;
+      stderr: Buffer;
+      error: any;
+    };
 
 /**
  * @description
@@ -48,11 +50,7 @@ export interface spawnSyncReturn {
  * @param options - Spawn Options.
  * @returns Return Promise.
  */
-export function spawnSync(
-  command: string,
-  args: string[],
-  options?: cp.SpawnOptions
-): ReturnType<typeof cp.spawnSync> | spawnSyncReturn {
+export function spawnSync(command: string, args: string[], options?: cp.SpawnOptions): spawnSyncReturn {
   // Parse the arguments
   const parsed = parse(command, args, options);
 
