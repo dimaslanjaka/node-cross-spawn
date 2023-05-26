@@ -1,6 +1,5 @@
 /// <reference types="node" />
 /// <reference types="node" />
-/// <reference types="node" />
 import cp from 'child_process';
 import enoent from './lib/enoent';
 import parse from './lib/parse';
