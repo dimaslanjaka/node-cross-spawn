@@ -52,7 +52,7 @@ export interface spawnSyncReturn {
 export function spawnSync(
   command: string,
   args: string[],
-  options: cp.SpawnOptions
+  options?: cp.SpawnOptions
 ): ReturnType<typeof cp.spawnSync> | spawnSyncReturn {
   // Parse the arguments
   const parsed = parse(command, args, options);
@@ -77,7 +77,7 @@ export function spawnSync(
 export function spawnAsync(
   command: string,
   args: string[],
-  options: import('child_process').SpawnOptions
+  options?: import('child_process').SpawnOptions
 ): Promise<{ stdout: string; stderr: string; output: string; error: string | null }> {
   return new Promise((resolve) => {
     let stdout = '';

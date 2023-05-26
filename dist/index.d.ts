@@ -30,7 +30,7 @@ export interface spawnSyncReturn {
  * @param options - Spawn Options.
  * @returns Return Promise.
  */
-export declare function spawnSync(command: string, args: string[], options: cp.SpawnOptions): ReturnType<typeof cp.spawnSync> | spawnSyncReturn;
+export declare function spawnSync(command: string, args: string[], options?: cp.SpawnOptions): ReturnType<typeof cp.spawnSync> | spawnSyncReturn;
 /**
  * Spawn asynchronously.
  * @description
@@ -39,7 +39,7 @@ export declare function spawnSync(command: string, args: string[], options: cp.S
  * @param options - Spawn Options.
  * @returns Return Promise.
  */
-export declare function spawnAsync(command: string, args: string[], options: import('child_process').SpawnOptions): Promise<{
+export declare function spawnAsync(command: string, args: string[], options?: import('child_process').SpawnOptions): Promise<{
     stdout: string;
     stderr: string;
     output: string;
