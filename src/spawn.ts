@@ -1,5 +1,3 @@
-'use strict';
-
 import cp from 'child_process';
 import enoent from './lib/enoent';
 import parse from './lib/parse';
@@ -122,10 +120,6 @@ export function spawnAsync(
   });
 }
 
-module.exports = spawn;
-module.exports.spawn = spawn;
-module.exports._parse = parse;
-module.exports._enoent = enoent;
 export default spawn;
 export const _enoent = enoent;
 export const _parse = parse;
