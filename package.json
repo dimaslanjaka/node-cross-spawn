@@ -79,6 +79,7 @@
     "@moxy/babel-preset": "^3.3.2",
     "@moxy/eslint-config-base": "^13.1.0",
     "@moxy/eslint-config-jest": "^13.1.0",
+    "@types/node": "^20.2.4",
     "cross-spawn": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-plugin-jsdoc": "^44.0.0",
