@@ -1,8 +1,10 @@
 'use strict';
+
 // import * as spawner from './spawn';
 // export * from './spawn';
 // export default spawner
-var spawn = require('./spawn');
+
+const spawn = require('./spawn')
 module.exports = spawn.default;
 module.exports.spawn = spawn.spawn;
 module.exports.sync = spawn.spawnSync;
