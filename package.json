@@ -37,7 +37,7 @@
   ],
   "scripts": {
     "update:packer": "curl -L https://github.com/dimaslanjaka/nodejs-package-types/raw/main/packer.js > packer.js",
-    "update:ncu": "npx npm-check-updates -u -x chalk,eslint",
+    "update:ncu": "npx npm-check-updates -u -x chalk,eslint,eslint-plugin-jsdoc",
     "lint": "eslint --fix .",
     "test": "jest --env node --coverage --no-cache --runInBand",
     "pre-release": "npm t && npm run lint",
@@ -79,10 +79,10 @@
     "@moxy/babel-preset": "^3.3.2",
     "@moxy/eslint-config-base": "^13.1.0",
     "@moxy/eslint-config-jest": "^13.1.0",
-    "@types/node": "^20.2.4",
+    "@types/node": "^20.2.5",
     "cross-spawn": "^7.0.3",
     "eslint": "^7.32.0",
-    "eslint-plugin-jsdoc": "^44.0.0",
+    "eslint-plugin-jsdoc": "^41.1.2",
     "fs-extra": "^11.1.1",
     "git-command-helper": "^1.2.3",
     "husky": "^8.0.3",
@@ -99,5 +99,8 @@
   },
   "engines": {
     "node": ">= 8"
+  },
+  "overrides": {
+    "deepmerge-ts": "^4"
   }
 }
