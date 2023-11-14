@@ -5,10 +5,9 @@ concurrency:
   cancel-in-progress: true
 
 on:
-#   push:
-#     branches: ["android-traffic"]
-#   pull_request:
-#     branches: ["android-traffic"]
+  schedule:
+    # https://crontab.guru/#30_5_*_*_5
+    - cron: '30 5 * * 5'
   workflow_dispatch:
     inputs:
       withDeploy:
