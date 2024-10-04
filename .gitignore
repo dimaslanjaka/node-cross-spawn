@@ -3,6 +3,7 @@ npm-debug.*
 coverage/
 test/fixtures/(*
 test/tmp/
-#.vscode
 ___*
 *.log
+*.gz
+yarn.lock
