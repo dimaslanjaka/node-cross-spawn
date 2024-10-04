@@ -24,7 +24,7 @@ const { spawn, async: spawnAsync } = crossPawn;
 //// CHECK REQUIRED PACKAGES
 
 const scriptname = `[packer]`;
-const isAllPackagesInstalled = ['cross-spawn', 'ansi-colors', 'glob', 'upath', 'minimist'].map((name) => ({
+const isAllPackagesInstalled = ['ansi-colors', 'glob', 'upath', 'minimist'].map((name) => ({
     name,
     installed: isPackageInstalled(name)
 }));
