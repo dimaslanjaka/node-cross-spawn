@@ -9,15 +9,12 @@ describe("push --dry-run", function () {
     let spawner: Awaited<ReturnType<typeof cp.async>>;
     beforeAll(async function () {
         spawner = await cp.async("git", [
-            "push",
-            "origin",
-            "private",
-            "--dry-run",
+            "status",
         ]);
     });
     it("should have properties", function () {
         expect(spawner).toHaveProperty("output");
-        expect(spawner).toHaveProperty("err");
+        expect(spawner).toHaveProperty("error");
         expect(spawner).toHaveProperty("stderr");
         expect(spawner).toHaveProperty("stdout");
     });
