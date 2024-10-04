@@ -12,7 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sync = exports.async = exports._parse = exports._enoent = exports.spawnAsync = exports.spawnSync = exports.spawn = void 0;
+exports.sync = exports.async = exports._parse = exports._enoent = void 0;
+exports.spawn = spawn;
+exports.spawnSync = spawnSync;
+exports.spawnAsync = spawnAsync;
 var child_process_1 = __importDefault(require("child_process"));
 var enoent_1 = __importDefault(require("./lib/enoent"));
 var parse_1 = __importDefault(require("./lib/parse"));
@@ -33,7 +36,6 @@ function spawn(command, args, options) {
     enoent_1.default.hookChildProcess(spawned, parsed);
     return spawned;
 }
-exports.spawn = spawn;
 /**
  * @description
  * @param command - Command.
@@ -50,7 +52,6 @@ function spawnSync(command, args, options) {
     result.error = result.error || enoent_1.default.verifyENOENTSync(result.status, parsed);
     return result;
 }
-exports.spawnSync = spawnSync;
 /**
  * Spawn asynchronously.
  * @description
@@ -98,7 +99,6 @@ function spawnAsync(command, args, options) {
             });*/
     });
 }
-exports.spawnAsync = spawnAsync;
 exports._enoent = enoent_1.default;
 exports._parse = parse_1.default;
 exports.async = spawnAsync;
