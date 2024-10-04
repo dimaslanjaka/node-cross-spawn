@@ -21,5 +21,5 @@ export const spawnSync = internalSpawn.spawnSync;
 export const spawnAsync = internalSpawn.spawnAsync;
 export const _parse = internalSpawn._parse;
 export const _enoent = internalSpawn._enoent;
-export default internalSpawn;
+export default internalSpawn.spawn;
 

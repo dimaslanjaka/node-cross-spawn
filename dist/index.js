@@ -46,4 +46,4 @@ exports.spawnSync = internalSpawn.spawnSync;
 exports.spawnAsync = internalSpawn.spawnAsync;
 exports._parse = internalSpawn._parse;
 exports._enoent = internalSpawn._enoent;
-exports.default = internalSpawn;
+exports.default = internalSpawn.spawn;

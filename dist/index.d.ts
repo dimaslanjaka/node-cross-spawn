@@ -7,5 +7,6 @@ export declare const spawnSync: typeof internalSpawn.spawnSync;
 export declare const spawnAsync: typeof internalSpawn.spawnAsync;
 export declare const _parse: typeof import("./lib/parse");
 export declare const _enoent: typeof import("./lib/enoent");
-export default internalSpawn;
+declare const _default: typeof internalSpawn.spawn;
+export default _default;
 //# sourceMappingURL=index.d.ts.map
