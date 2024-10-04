@@ -3,13 +3,7 @@ const fs = require('fs-extra');
 const { resolve, join, dirname, toUnix, basename } = require('upath');
 const packagejson = require('./package.json');
 const crypto = require('crypto');
-let crossPawn;
-if (packagejson.name === 'cross-spawn') {
-    crossPawn = require('./dist')
-} else {
-    crossPawn = require('cross-spawn')
-}
-const { spawn, async: spawnAsync } = crossPawn;
+const { spawn } = require('child_process');
 
 // const os = require('os');
 
@@ -66,8 +60,8 @@ log('='.repeat(19));
 const _isCI = process.env.GITHUB_ACTION && process.env.GITHUB_ACTIONS;
 
 const child = !withYarn
-    ? spawn('npm', ['pack'], { cwd: __dirname, stdio: 'ignore' })
-    : spawn('yarn', ['pack'], { cwd: __dirname, stdio: 'ignore' });
+    ? spawn('npm', ['pack'], { cwd: __dirname, shell: true, stdio: 'ignore', env: { PATH: process.env.PATH } })
+    : spawn('yarn', ['pack'], { cwd: __dirname, shell: true, stdio: 'ignore', env: { PATH: process.env.PATH } });
 
 const version = (function () {
     const v = parseVersion(packagejson.version);
@@ -225,6 +219,11 @@ function parseVersion(versionString) {
  * create release/readme.md
  */
 async function addReadMe() {
+    if (['git-command-helper', 'cross-spawn'].includes(packagejson.name)) {
+        console.error("cannot run add readme on", packagejson.name)
+        return
+    }
+    const { async: spawnAsync } = await import('cross-spawn')
     // set username and email on CI
     if (_isCI) {
         await spawnAsync('git', ['config', '--global', 'user.name', 'dimaslanjaka'], {
