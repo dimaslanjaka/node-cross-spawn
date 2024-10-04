@@ -19,5 +19,6 @@
         "*.test.ts": "npm test -- $fileNameWithoutExt",
         "*.test.js": "npm test -- $fileNameWithoutExt"
     },
-    "code-runner.respectShebang": true
+    "code-runner.respectShebang": true,
+    "eslint.useFlatConfig": false
 }
