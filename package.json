@@ -102,5 +102,6 @@
   },
   "overrides": {
     "deepmerge-ts": "^4"
-  }
+  },
+  "packageManager": "yarn@4.5.0"
 }
