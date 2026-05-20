@@ -42,6 +42,7 @@
     "test": "jest --env node --coverage --no-cache --runInBand",
     "pre-release": "npm t && npm run lint",
     "release": "standard-version",
+    "clean": "npx -y rimraf tmp dist",
     "post-release": "git push --follow-tags origin HEAD && npm publish",
     "pack": "node packer.js",
     "build": "tsc --build && npm run pack",
