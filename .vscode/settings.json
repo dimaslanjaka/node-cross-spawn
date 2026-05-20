@@ -1,5 +1,5 @@
 {
-  "terminal.integrated.defaultProfile.windows": "Short Command Prompt",
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
   "terminal.integrated.env.linux": {
     "DEBUG_PKG": "1",
     "ESLINT_USE_FLAT_CONFIG": "true",
