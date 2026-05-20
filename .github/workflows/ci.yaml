@@ -10,6 +10,7 @@ on:
       - "**garbage-collector**"
       - "**codeql**"
       - "**/.github/workflows/tester.yml"
+
   pull_request:
     types:
       - closed
@@ -19,25 +20,50 @@ on:
       - "**/*.tgz"
       - "**/*.gz"
       - "**/test*/**"
+
   workflow_dispatch:
 
 jobs:
-    unit:
-        runs-on: ubuntu-latest
+  unit:
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: ['18', '20', '22']
+    strategy:
+      matrix:
+        node-version: ['18', '20', '22']
 
-        steps:
-            - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-            - uses: actions/setup-node@v4
-              with:
-                node-version: ${{ matrix.node-version }}
+      # Node setup + Yarn cache (IMPORTANT)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+          cache-dependency-path: |
+            **/package-lock.json
+            **/yarn.lock
 
-            - run: yarn install
+      # Cache heavy folders (node_modules + build outputs)
+      - name: Cache node_modules + build artifacts
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            **/node_modules
+            dist
+            **/dist
+            tmp
+            **/tmp
+          key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ matrix.node-version }}-
+            ${{ runner.os }}-node-
 
-            - run: npm run lint
+      - name: Install dependencies
+        run: yarn install
 
-            - run: npm test
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
