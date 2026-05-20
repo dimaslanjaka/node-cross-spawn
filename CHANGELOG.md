@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.6](https://github.com/moxystudio/node-cross-spawn/compare/v7.0.5...v7.0.6) (2024-11-18)
+
+
+### Bug Fixes
+
+* update cross-spawn version to 7.0.5 in package-lock.json ([f700743](https://github.com/moxystudio/node-cross-spawn/commit/f700743918d901eff92960e15a8dd68f87bd4176))
+
+### [7.0.5](https://github.com/moxystudio/node-cross-spawn/compare/v7.0.4...v7.0.5) (2024-11-07)
+
+
+### Bug Fixes
+
+* fix escaping bug introduced by backtracking ([640d391](https://github.com/moxystudio/node-cross-spawn/commit/640d391fde65388548601d95abedccc12943374f))
+
+### [7.0.4](https://github.com/moxystudio/node-cross-spawn/compare/v7.0.3...v7.0.4) (2024-11-07)
+
+
+### Bug Fixes
+
+* disable regexp backtracking ([#160](https://github.com/moxystudio/node-cross-spawn/issues/160)) ([5ff3a07](https://github.com/moxystudio/node-cross-spawn/commit/5ff3a07d9add449021d806e45c4168203aa833ff))
+
 ### [7.0.3](https://github.com/moxystudio/node-cross-spawn/compare/v7.0.2...v7.0.3) (2020-05-25)
 
 
