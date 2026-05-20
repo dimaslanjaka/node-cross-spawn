@@ -1,5 +1,6 @@
 {
-  // excludes
+  // VSCode will use this file to understand how to compile the project
+  // and to provide intellisense and other features.
   "exclude": ["**/dist/**", "**/node_modules/**"],
   "compilerOptions": {
     // Tells TypeScript to read JS files, as
