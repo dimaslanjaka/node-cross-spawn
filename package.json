@@ -26,7 +26,7 @@
     "url": "git@github.com:moxystudio/node-cross-spawn.git"
   },
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
@@ -35,6 +35,13 @@
     "!package-lock.json",
     "!yarn.lock"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "update:packer": "curl -L https://github.com/dimaslanjaka/nodejs-package-types/raw/main/packer.js > packer.js",
     "update:ncu": "npx npm-check-updates -u -x jsdom,hexo,deepmerge-ts,chalk,eslint,eslint-plugin-jsdoc --enginesNode --root",
