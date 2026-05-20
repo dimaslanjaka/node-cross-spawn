@@ -8,3 +8,4 @@ ___*
 *.gz
 yarn.lock
 *.tsbuildinfo
+dist/
