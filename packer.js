@@ -1,4 +1,4 @@
-/* eslint-disable no-useless-escape */
+ 
 const fs = require('fs-extra');
 const { resolve, join, dirname, toUnix, basename } = require('upath');
 const packagejson = require('./package.json');

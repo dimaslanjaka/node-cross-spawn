@@ -13,6 +13,10 @@ export default [
             "typings/",
             "dist/",
             "**/*-old.*",
+            "**/*.min.*",
+            "**/vendor/**",
+            "**/.yarn/**",
+            "**/.pnp.*",
         ],
     },
     {
