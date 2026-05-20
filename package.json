@@ -45,7 +45,7 @@
     "clean": "npx -y rimraf tmp dist",
     "post-release": "git push --follow-tags origin HEAD && npm publish",
     "pack": "node packer.js",
-    "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly",
+    "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly --declarationDir dist --declaration",
     "build:js": "rollup -c",
     "build": "npm run build:types && npm run build:js",
     "prepare": "husky install"
