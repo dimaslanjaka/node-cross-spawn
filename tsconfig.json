@@ -1,7 +1,7 @@
 {
   // VSCode will use this file to understand how to compile the project
   // and to provide intellisense and other features.
-  "exclude": ["**/dist/**", "**/node_modules/**"],
+  "exclude": ["**/dist/**", "**/node_modules/**", "**/tmp/**"],
   "compilerOptions": {
     // Tells TypeScript to read JS files, as
     // normally they are ignored as source files
@@ -15,7 +15,7 @@
     // Removing this would place the .d.ts files
     // next to the .js files
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": ".",
     // go to js file when using IDE functions like
     // "Go to Definition" in VSCode
     "declarationMap": true,
