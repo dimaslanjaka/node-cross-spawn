@@ -1,5 +1,5 @@
 import cp from 'child_process';
-import enoent from './lib/enoent';
+import * as enoent from './lib/enoent';
 import parse from './lib/parse';
 
 /**
