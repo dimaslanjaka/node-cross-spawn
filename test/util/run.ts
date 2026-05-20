@@ -1,7 +1,7 @@
 "use strict";
 
-import { SpawnOptions } from "child_process";
-import spawn from "../../dist/index";
+import { ChildProcess, SpawnOptions } from "child_process";
+import * as spawn from "../../dist/index.cjs";
 
 function isForceShell(method: string) {
     return /-force-shell$/.test(method);
@@ -41,7 +41,7 @@ function runSync(
     args: string[],
     options: SpawnOptions | undefined
 ) {
-    const { error, status, stdout, stderr } = spawn.sync(
+    const { error, status, stdout, stderr } = spawn.sync!(
         command,
         args,
         options
@@ -65,21 +65,21 @@ function runAsync(
     args: string[] | SpawnOptions,
     options: SpawnOptions | undefined
 ) {
-    const cp = spawn(command, args, options);
+    const cp = spawn.async!(command, args, options);
 
-    const promise = new Promise((resolve, reject) => {
+    const promise = new Promise<spawnResult>((resolve, reject) => {
         let stdout: Buffer | null = null;
         let stderr: Buffer | null = null;
 
         cp.stdout &&
-            cp.stdout.on("data", (data) => {
-                stdout = stdout || new Buffer("");
+            cp.stdout.on("data", (data: Buffer) => {
+                stdout = stdout || Buffer.from("");
                 stdout = Buffer.concat([stdout, data]);
             });
 
         cp.stderr &&
-            cp.stderr.on("data", (data) => {
-                stderr = stderr || new Buffer("");
+            cp.stderr.on("data", (data: Buffer) => {
+                stderr = stderr || Buffer.from("");
                 stderr = Buffer.concat([stderr, data]);
             });
 
@@ -88,12 +88,12 @@ function runAsync(
             cp.removeListener("close", onClose);
         };
 
-        const onError = (err) => {
+        const onError = (err: Error) => {
             cleanupListeners();
             reject(err);
         };
 
-        const onClose = (code) => {
+        const onClose = (code: number | null) => {
             cleanupListeners();
 
             const resolved = resolveRun(code, stdout, stderr);
@@ -108,7 +108,7 @@ function runAsync(
         cp.on("error", onError).on("close", onClose);
     });
 
-    promise["cp"] = cp;
+    (promise as Promise<spawnResult> & { cp: ChildProcess }).cp = cp;
 
     return promise;
 }
@@ -195,4 +195,5 @@ export const methods = [
     "sync-force-shell",
     "sync",
 ];
-export { isMethodSync, isForceShell };
+export { isForceShell, isMethodSync };
+
