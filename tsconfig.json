@@ -23,6 +23,7 @@
     "esModuleInterop": true,
     // skip installed module types
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "tsBuildInfoFile": "tmp/buildInfo.txt"
   }
 }

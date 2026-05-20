@@ -1,12 +1,16 @@
 {
     // This is the tsconfig for building the package. It extends the base tsconfig and overrides some options for the build process.
     "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "outDir": "./dist",
-        "declaration": true,
-        "declarationMap": true,
-        "sourceMap": true,
-        "rootDir": "."
-    },
-    "include": ["src/**/*"]
+  "compilerOptions": {
+    "declaration": false,
+    "declarationMap": false,
+    "emitDeclarationOnly": false,
+    "ignoreDeprecations": "6.0",
+    "outDir": "dist",
+    "types": ["node"],
+    "sourceMap": true,
+    "rootDir": "."
+  },
+  "include": ["src/**/*"]
 }
+
