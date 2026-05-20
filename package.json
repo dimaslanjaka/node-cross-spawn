@@ -94,10 +94,10 @@
     "eslint-plugin-jsdoc": "^43.0.7",
     "eslint-plugin-prettier": "5.5.5",
     "fs-extra": "^11.1.1",
-    "husky": "^8.0.3",
+    "husky": "^9.1.7",
     "jest": "^29.5.0",
     "jsonc-parser": "3.3.1",
-    "lint-staged": "^13.2.2",
+    "lint-staged": "^17.0.5",
     "minimist": "^1.2.8",
     "mkdirp": "^3.0.1",
     "prettier": "3.8.3",
@@ -115,5 +115,5 @@
   "overrides": {
     "deepmerge-ts": "^4"
   },
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.13.0"
 }
