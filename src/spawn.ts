@@ -1,4 +1,4 @@
-import cp from 'child_process';
+import cp from 'node:child_process';
 import * as enoent from './lib/enoent';
 import parse from './lib/parse';
 
