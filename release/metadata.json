@@ -10,12 +10,12 @@
   },
   "/release/cross-spawn.tgz": {
     "integrity": {
-      "sha1": "9ea90840f29c572657195378a910082867082b40",
-      "sha256": "G4f1peUadtkZYSfFzlPBxAHyvMFiN5xrpjlDwpivVWI=",
-      "md5": "967bfddf1709041be8e96e159c637ebd",
-      "sha512": "F4+9YToUDhAauYq7Avrfj/sFwpyOy9dyJD0kULxqKP1F87uFO+P2OESgze5SkQ2VWZRgiV4aolA1igRamz3X+Q=="
+      "sha1": "e7f000b8fe4192b66fc7a5603b78bd586698f780",
+      "sha256": "6/UxpT56VvdlAeFwzt7qm+6LCfAY04JUqppWyFKCOa4=",
+      "md5": "2be474b0c1fa71e99e21e54d365e0432",
+      "sha512": "rR+RCZOvyQ7L9awBIteanjFAXRYuP+GT5c6lXu7+3UksMfG4EJAfqZrNRK2TBKq3P/kpNbyDV6w1K5Km4cG8GQ=="
     },
-    "size": "10.15 KB"
+    "size": "13.97 KB"
   },
   "/package-lock.json": {
     "integrity": {
@@ -28,20 +28,20 @@
   },
   "/yarn.lock": {
     "integrity": {
-      "sha1": "9f33241d25e108f9f02381b51787e5965d409f4d",
-      "sha256": "v7LlwyA442w2MeQPe5oF6UVgmDzrAh13VxOzI5X5Sf0=",
-      "md5": "79c564d6f2c774f6fb75b09f56ed9e1f",
-      "sha512": "B4PNv77nCSMzgjQ50QWy2WPD8LJANWRyGjg0naCarnvtzzn2hVVkpPgVrJEJkdyqSPlbOHLB/9dquvVkbA+KEQ=="
+      "sha1": "7688d42d7e0c4875071b5c68d96112065289756c",
+      "sha256": "uPgByiu6Bh2puxAkQhA7291u9QamsJO0P+f09Gl9h6E=",
+      "md5": "f475f66ce6228ec092f840d95c289a40",
+      "sha512": "3N6Dfh2q92gmUPWPelPUIPRY4gtSR1YkZaqf4VC8Yo+omdMYxcctw/lk5r9PpHlE6hw5mb0Ntb2Tk7gAs1uavQ=="
     },
-    "size": "461.19 KB"
+    "size": "474.06 KB"
   },
   "/release/cross-spawn-7.0.6.tgz": {
     "integrity": {
-      "sha1": "9ea90840f29c572657195378a910082867082b40",
-      "sha256": "G4f1peUadtkZYSfFzlPBxAHyvMFiN5xrpjlDwpivVWI=",
-      "md5": "967bfddf1709041be8e96e159c637ebd",
-      "sha512": "F4+9YToUDhAauYq7Avrfj/sFwpyOy9dyJD0kULxqKP1F87uFO+P2OESgze5SkQ2VWZRgiV4aolA1igRamz3X+Q=="
+      "sha1": "e7f000b8fe4192b66fc7a5603b78bd586698f780",
+      "sha256": "6/UxpT56VvdlAeFwzt7qm+6LCfAY04JUqppWyFKCOa4=",
+      "md5": "2be474b0c1fa71e99e21e54d365e0432",
+      "sha512": "rR+RCZOvyQ7L9awBIteanjFAXRYuP+GT5c6lXu7+3UksMfG4EJAfqZrNRK2TBKq3P/kpNbyDV6w1K5Km4cG8GQ=="
     },
-    "size": "10.15 KB"
+    "size": "13.97 KB"
   }
 }

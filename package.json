@@ -45,7 +45,7 @@
     "clean": "npx -y rimraf tmp dist",
     "post-release": "git push --follow-tags origin HEAD && npm publish",
     "pack": "node packer.js",
-    "build": "tsc --build && npm run pack",
+    "build": "tsc -p tsconfig.build.json && npm run pack",
     "prepare": "husky install"
   },
   "husky": {
@@ -84,6 +84,7 @@
     "@moxy/babel-preset": "^3.3.2",
     "@moxy/eslint-config-base": "^13.1.0",
     "@moxy/eslint-config-jest": "^13.1.0",
+    "@types/mocha": "^10.0.10",
     "@types/node": "^22.7.4",
     "@typescript-eslint/eslint-plugin": "8.59.3",
     "@typescript-eslint/parser": "8.59.3",
