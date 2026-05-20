@@ -2,7 +2,6 @@ import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import { builtinModules } from "node:module";
-import dts from "rollup-plugin-dts";
 import pkg from "./package.json" with { type: "json" };
 
 /**
@@ -105,18 +104,5 @@ export default [
         declaration: false,
       }),
     ],
-  },
-
-  // =========================
-  // Type declarations bundle
-  // =========================
-  {
-    input: "src/index.ts",
-    external: isExternal,
-    output: {
-      file: "dist/index.d.ts",
-      format: "es",
-    },
-    plugins: [dts()],
   },
 ];
