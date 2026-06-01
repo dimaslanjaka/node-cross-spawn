@@ -102,7 +102,7 @@
     "@typescript-eslint/eslint-plugin": "8.59.3",
     "@typescript-eslint/parser": "8.59.3",
     "binary-collections": "*",
-    "cross-spawn": "*",
+    "cross-spawn": "https://github.com/dimaslanjaka/node-cross-spawn/raw/78b09a1f799430fb251c1b438ec56ce7957674f4/release/cross-spawn.tgz",
     "eslint": "9",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-jsdoc": "^43.0.7",
