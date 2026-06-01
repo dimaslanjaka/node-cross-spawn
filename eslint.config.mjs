@@ -1,11 +1,13 @@
 import babelParser from "@babel/eslint-parser";
-import base from '@dimaslanjaka/eslint-base-config';
+import globals from "globals";
+import base from "@dimaslanjaka/eslint-base-config";
 
 /**
  * @type {import('eslint').Linter.Config[]}
  */
 export default [
-    ...base,
+  ...base,
+
   {
     ignores: [
       "coverage/",
@@ -17,42 +19,43 @@ export default [
       "**/*.min.*",
       "**/vendor/**",
       "**/.yarn/**",
-      "**/.pnp.*",
-    ],
+      "**/.pnp.*"
+    ]
   },
+
   {
-    // files: ["**/*.js", "**/*.cjs", "**/*.mjs"],
+    files: ["**/*.{js,cjs,mjs}"],
+
     languageOptions: {
       parser: babelParser,
+
       parserOptions: {
-        requireConfigFile: false, // Prevents needing a separate Babel config file
+        requireConfigFile: false,
         babelOptions: {
-          plugins: ["@babel/plugin-syntax-import-assertions"], // Ensure the plugin is enabled
-        },
+          babelrc: false,
+          configFile: false,
+          plugins: ["@babel/plugin-syntax-import-assertions"]
+        }
       },
-      ecmaVersion: 2020,
+
+      ecmaVersion: "latest",
       sourceType: "module",
+
       globals: {
-        // ES2020 environment globals (adjust if you're Node/browser-specific)
-        console: "readonly",
-        window: "readonly",
-        document: "readonly",
-        setTimeout: "readonly",
-        clearTimeout: "readonly",
-        setInterval: "readonly",
-        clearInterval: "readonly",
-        URL: "readonly",
-        fetch: "readonly",
-        Promise: "readonly",
-      },
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es2021
+      }
     },
 
     rules: {
-      // Enforces error handling in callbacks
-      "handle-callback-err": "warn",
+      // Removed from ESLint core.
+      // Consider eslint-plugin-node or a custom rule if needed.
+      // "handle-callback-err": "warn",
 
-      // Disallow new operators with calls to require
-      "no-new-require": "error",
+      // Removed from ESLint core.
+      // Consider eslint-plugin-node or a custom rule if needed.
+      // "no-new-require": "error",
 
       // Require braces around arrow function bodies
       "arrow-body-style": ["error", "as-needed"],
@@ -130,7 +133,7 @@ export default [
       "template-curly-spacing": ["error", "never"],
 
       // Require or disallow spacing around the * in yield* expressions
-      "yield-star-spacing": ["error", { before: false, after: true }],
-    },
-  },
+      "yield-star-spacing": ["error", { before: false, after: true }]
+    }
+  }
 ];
