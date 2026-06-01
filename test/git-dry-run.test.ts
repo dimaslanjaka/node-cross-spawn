@@ -5,10 +5,12 @@ import { beforeAll, expect, it } from "@jest/globals";
 import { describe } from "@jest/globals";
 import cp from "../src";
 
+const asyncSpawner = (cp as any).async;
+
 describe("push --dry-run", function () {
-    let spawner: Awaited<ReturnType<typeof cp.async>>;
+    let spawner: Awaited<ReturnType<typeof asyncSpawner>>;
     beforeAll(async function () {
-        spawner = await cp.async("git", [
+        spawner = await asyncSpawner("git", [
             "status",
         ]);
     });
