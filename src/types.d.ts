@@ -1,7 +1,6 @@
 /// <reference types="node" />
 
 import * as child_process from "child_process";
-import * as cp from "./index";
 
 declare namespace spawn {
     /**
@@ -20,7 +19,11 @@ declare namespace spawn {
      * The `async()` method spawns a new process using the given `command`, with
      * command line arguments in `args`. If omitted, `args` defaults to an empty array.
      */
-    const async: typeof cp.async;
+    const async: (
+        command: string,
+        args?: readonly string[],
+        options?: child_process.SpawnOptions,
+    ) => Promise<{ stdout: string; stderr: string; output: string; error: string | null }>;
 
     /**
      * The `spawnSync()` method spawns a new process using the given `command`, with
@@ -32,7 +35,11 @@ declare namespace spawn {
      * The `spawnAsync()` method spawns a new process using the given `command`, with
      * command line arguments in `args`. If omitted, `args` defaults to an empty array.
      */
-    const spawnAsync: typeof cp.spawnAsync;
+    const spawnAsync: (
+        command: string,
+        args?: readonly string[],
+        options?: child_process.SpawnOptions,
+    ) => Promise<{ stdout: string; stderr: string; output: string; error: string | null }>;
 }
 
 /**

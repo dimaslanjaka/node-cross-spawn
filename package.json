@@ -107,6 +107,7 @@
     "prettier": "3.8.3",
     "rimraf": "^5.0.10",
     "rollup": "^4.60.4",
+    "rollup-plugin-dts": "^6.4.1",
     "standard-version": "^9.5.0",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.2",
