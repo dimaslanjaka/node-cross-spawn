@@ -2,6 +2,7 @@
 
 import * as child_process from "child_process";
 import * as internalSpawn from "./spawn";
+export { spawnSyncReturn } from "./spawn";
 
 /**
  * Helpers type (keeps full inference)
