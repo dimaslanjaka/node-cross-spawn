@@ -88,15 +88,15 @@
     "@babel/preset-typescript": "^7.25.7",
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
-    "@dimaslanjaka/eslint-base-config": "https://github.com/dimaslanjaka/eslint-base-config/raw/refs/heads/master/release/dimaslanjaka-eslint-base-config.tgz",
+    "@dimaslanjaka/eslint-base-config": "^1.0.2",
     "@jest/globals": "^29.5.0",
     "@rollup/plugin-commonjs": "^29.0.2",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "^25.9.1",
-    "binary-collections": "https://github.com/dimaslanjaka/bin/raw/refs/heads/master/releases/bin.tgz",
-    "cross-spawn": "https://github.com/dimaslanjaka/node-cross-spawn/raw/78b09a1f799430fb251c1b438ec56ce7957674f4/release/cross-spawn.tgz",
+    "binary-collections": "^2.0.13",
+    "cross-spawn": "^7.0.6",
     "fs-extra": "^11.1.1",
     "husky": "^9.1.7",
     "jest": "^29.5.0",
@@ -120,5 +120,12 @@
   "overrides": {
     "deepmerge-ts": "^4"
   },
-  "packageManager": "yarn@4.13.0"
+  "packageManager": "yarn@4.13.0",
+  "resolutions": {
+    "@dimaslanjaka/eslint-base-config": "https://github.com/dimaslanjaka/eslint-base-config/raw/9741b4feac89f303ea585e3ecac2b0e768434135/release/dimaslanjaka-eslint-base-config.tgz",
+    "cross-spawn": "https://github.com/dimaslanjaka/node-cross-spawn/raw/1e3126ab3a44a2458ab4b15792fb43fd24a94bdb/release/cross-spawn.tgz",
+    "binary-collections": "https://github.com/dimaslanjaka/bin/raw/133c80753f7d9fca68ebd4a291a1a6bea2034d85/releases/bin.tgz",
+    "git-command-helper": "https://github.com/dimaslanjaka/git-command-helper/raw/dd8c8ef596083f367c592f97a2439f9fc8ab33b2/release/git-command-helper.tgz",
+    "sbg-utility": "https://github.com/dimaslanjaka/static-blog-generator/raw/44e5c7b79b4e60f8c2d34857c27b8ce677d7493e/packages/sbg-utility/release/sbg-utility.tgz"
+  }
 }
