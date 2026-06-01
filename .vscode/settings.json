@@ -103,8 +103,8 @@
     "javascript": "node -r ts-node/register"
   },
   "code-runner.executorMapByGlob": {
-    "*.test.ts": "npm test -- $fileNameWithoutExt",
-    "*.test.js": "npm test -- $fileNameWithoutExt"
+    "*.test.{ts,js,cjs}": "npm test -- $fileName",
+    "*.test.mjs": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand $fileName"
   },
   "code-runner.respectShebang": true,
   "eslint.useFlatConfig": true,
