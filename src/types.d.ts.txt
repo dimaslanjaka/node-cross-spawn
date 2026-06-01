@@ -13,7 +13,7 @@ declare namespace spawn {
      * The `spawn.sync()` method spawns a new process using the given `command`, with
      * command line arguments in `args`. If omitted, `args` defaults to an empty array.
      */
-    const sync: typeof child_process.spawnSync;
+    const sync: (command: string, args?: readonly string[], options?: child_process.SpawnOptions) => import('./spawn').spawnSyncReturn;
 
     /**
      * The `async()` method spawns a new process using the given `command`, with
@@ -29,7 +29,7 @@ declare namespace spawn {
      * The `spawnSync()` method spawns a new process using the given `command`, with
      * command line arguments in `args`. If omitted, `args` defaults to an empty array.
      */
-    const spawnSync: typeof child_process.spawnSync;
+    const spawnSync: (command: string, args?: readonly string[], options?: child_process.SpawnOptions) => import('./spawn').spawnSyncReturn;
 
     /**
      * The `spawnAsync()` method spawns a new process using the given `command`, with
