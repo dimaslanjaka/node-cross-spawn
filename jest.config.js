@@ -4,8 +4,8 @@
 const config = {
     verbose: true,
     testMatch: [
-        `**/__tests__/**/*.+(ts|tsx|js)`,
-        `**/?(*.)+(spec|test).+(ts|tsx|js)`,
+        `**/__tests__/**/*.+(ts|tsx|js|cjs|mjs)`,
+        `**/?(*.)+(spec|test).+(ts|tsx|js|cjs|mjs)`,
     ],
     testPathIgnorePatterns: [
         "<rootDir>/node_modules",

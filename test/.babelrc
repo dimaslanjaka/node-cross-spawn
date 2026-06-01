@@ -1,10 +1,6 @@
 {
     "presets": [
-        [
-            "@moxy/babel-preset/lib",
-            {
-                "lodash": false
-            }
-        ]
+        ["@babel/preset-env", { "targets": { "node": "current" } }],
+        "@babel/preset-typescript"
     ]
 }

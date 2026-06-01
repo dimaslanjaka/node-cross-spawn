@@ -111,9 +111,9 @@ export default [
   // DTS bundle
   // =========================
   {
-    input: "src/types.d.ts",
+    input: "dist/index.d.ts",
     output: {
-      file: "dist/index.d.ts",
+      file: "dist/index.d.mts",
       format: "es",
     },
     plugins: [dts()],
