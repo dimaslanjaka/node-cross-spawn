@@ -7,7 +7,7 @@ export { spawnSyncReturn } from "./spawn";
 /**
  * Helpers type (keeps full inference)
  */
-type SpawnHelpers = {
+export type SpawnHelpers = {
   sync: typeof internalSpawn.spawnSync;
   async: typeof internalSpawn.spawnAsync;
   spawnSync: typeof internalSpawn.spawnSync;
@@ -20,7 +20,7 @@ type SpawnHelpers = {
 /**
  * Callable function type
  */
-type SpawnCall = {
+export type SpawnCall = {
   (
     command: string,
     args?: readonly string[] | child_process.SpawnOptions,
@@ -31,7 +31,7 @@ type SpawnCall = {
 /**
  * Final exported type = callable + helpers
  */
-type SpawnModule = SpawnCall & SpawnHelpers;
+export type SpawnModule = SpawnCall & SpawnHelpers;
 
 /**
  * Base callable function (NO casting to full module yet)
