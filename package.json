@@ -96,7 +96,7 @@
     "@rollup/plugin-typescript": "^12.3.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "^25.9.1",
-    "binary-collections": "^2.0.13",
+    "binary-collections": "^2.0.15",
     "cross-spawn": "^7.0.6",
     "fs-extra": "^11.1.1",
     "husky": "^9.1.7",
