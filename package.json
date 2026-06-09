@@ -123,10 +123,10 @@
   },
   "packageManager": "yarn@4.13.0",
   "resolutions": {
-    "@dimaslanjaka/eslint-base-config": "https://github.com/dimaslanjaka/eslint-base-config/raw/822b872f18985462f0da358579cd6493472a2ee0/release/dimaslanjaka-eslint-base-config.tgz",
-    "cross-spawn": "https://github.com/dimaslanjaka/node-cross-spawn/raw/92032267c3f74f1092a7794c178720af94dff3d8/release/cross-spawn.tgz",
-    "binary-collections": "https://github.com/dimaslanjaka/bin/raw/1a89c5c147211e6e2294c447c201356f17e028dd/releases/bin.tgz",
-    "git-command-helper": "https://github.com/dimaslanjaka/git-command-helper/raw/1fdf12be05b24af9a7c804033e1ce9cbcfefa1b0/release/git-command-helper.tgz",
-    "sbg-utility": "https://github.com/dimaslanjaka/static-blog-generator/raw/44e5c7b79b4e60f8c2d34857c27b8ce677d7493e/packages/sbg-utility/release/sbg-utility.tgz"
+    "@dimaslanjaka/eslint-base-config": "https://github.com/dimaslanjaka/eslint-base-config/raw/c21437dd8072edf4d78531932ecd586708cd7e43/release/dimaslanjaka-eslint-base-config.tgz",
+    "cross-spawn": "https://github.com/dimaslanjaka/node-cross-spawn/raw/e48db3235351bbcb9394b21766b2d477cc6b7dd2/release/cross-spawn.tgz",
+    "binary-collections": "https://github.com/dimaslanjaka/bin/raw/62edc16286e4344292d337d620c293ea5a158183/releases/bin.tgz",
+    "git-command-helper": "https://github.com/dimaslanjaka/git-command-helper/raw/4e7f8475eafa0974c170893de354026967a71776/release/git-command-helper.tgz",
+    "sbg-utility": "https://github.com/dimaslanjaka/static-blog-generator/raw/1ca385787f7287155b547c5b97d5ffd5bcfab482/packages/sbg-utility/release/sbg-utility.tgz"
   }
 }
