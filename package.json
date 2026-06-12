@@ -51,7 +51,7 @@
     "release": "standard-version",
     "clean": "npx -y rimraf tmp dist",
     "post-release": "git push --follow-tags origin HEAD && npm publish",
-    "pack": "node packer.js",
+    "pack": "npx -y tarball-packer --normalize-resolutions",
     "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly --declarationDir dist --declaration --rootDir src",
     "build:js": "rollup -c",
     "build": "npm run build:types && npm run build:js",
@@ -97,7 +97,6 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^25.9.1",
     "binary-collections": "^2.0.15",
-    "cross-spawn": "https://github.com/dimaslanjaka/node-cross-spawn/raw/78b09a1f799430fb251c1b438ec56ce7957674f4/release/cross-spawn.tgz",
     "fs-extra": "^11.1.1",
     "husky": "^9.1.7",
     "jest": "^29.5.0",
@@ -112,14 +111,12 @@
     "standard-version": "^9.5.0",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.2",
+    "tslib": "^2.8.1",
     "typescript": "^6.0.3",
     "upath": "^2.0.1"
   },
   "engines": {
     "node": ">= 8"
-  },
-  "overrides": {
-    "deepmerge-ts": "^4"
   },
   "packageManager": "yarn@4.13.0",
   "resolutions": {
