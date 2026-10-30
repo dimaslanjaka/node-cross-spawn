@@ -6,8 +6,8 @@ concurrency:
 
 on:
   #schedule:
-    # https://crontab.guru/#30_5_*_*_5
-    #- cron: '30 5 * * 5'
+  # https://crontab.guru/#30_5_*_*_5
+  #- cron: '30 5 * * 5'
   workflow_dispatch:
     inputs:
       withDeploy:
@@ -19,9 +19,9 @@ on:
           - yes
           - no
   workflow_call:
-     secrets:
-       ACCESS_TOKEN:
-         required: true
+    secrets:
+      ACCESS_TOKEN:
+        required: true
 
 jobs:
   build:
@@ -72,25 +72,25 @@ jobs:
             gradle-${{ runner.os }}-
             gradle-${{ runner.os }}
             gradle-
-#       - name: "bash: dump paths"
-#         run: |
-#           echo $ANDROID_SDK_ROOT
-#           echo $ANDROID_HOME
-#         shell: bash
-#       - name: "win: dump paths"
-#         run: |
-#           where sdkmanager.bat
+      #       - name: "bash: dump paths"
+      #         run: |
+      #           echo $ANDROID_SDK_ROOT
+      #           echo $ANDROID_HOME
+      #         shell: bash
+      #       - name: "win: dump paths"
+      #         run: |
+      #           where sdkmanager.bat
       - name: install platform-tools
         run: sdkmanager "platform-tools" "platforms;android-34"
       - name: install ndk
         run: sdkmanager --install "ndk;23.0.7599858"
-#       - name: apply sdk paths to local.properties
-#         shell: bash
-#         if: false
-#         run: |
-#           echo "sdk.dir=$ANDROID_HOME" > local.properties
-#           echo "\n" >> local.properties
-#           echo "sdk.dir=$ANDROID_HOME\\\\ndk\\\\23.0.7599858" >> local.properties
+      #       - name: apply sdk paths to local.properties
+      #         shell: bash
+      #         if: false
+      #         run: |
+      #           echo "sdk.dir=$ANDROID_HOME" > local.properties
+      #           echo "\n" >> local.properties
+      #           echo "sdk.dir=$ANDROID_HOME\\\\ndk\\\\23.0.7599858" >> local.properties
       - name: copy build gradle config
         run: |
           chmod 777 *.properties
@@ -112,11 +112,11 @@ jobs:
       - name: build X86_64
         run: bash ./gradlew assembleX86_64Release --gradle-user-home .gradle
       - name: build manager
-        run: "bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle"
+        run: 'bash ./gradlew :manager:assembleRelease --gradle-user-home .gradle'
       # - name: Build universal release APK
       #   run: bash ./gradlew assembleRelease --gradle-user-home .gradle
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
           name: apk
           path: |
@@ -185,11 +185,11 @@ jobs:
           echo "GITHUB_BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
           echo "GITHUB_COMMIT_URL=https://github.com/${{github.repository}}/commit/$(echo $GITHUB_SHA)" >> $GITHUB_ENV
           echo "GITHUB_RUNNER_URL=https://github.com/${{github.repository}}/commit/${{github.sha}}/checks/${{github.run_id}}" >> $GITHUB_ENV
-      # - name: debug env
-      #   run: |
-      #     echo $HOME
-      #     echo ${{ steps.set-env.outputs.GRADLE_USER_HOME }}
-      #     echo $USER_HOME
+        # - name: debug env
+        #   run: |
+        #     echo $HOME
+        #     echo ${{ steps.set-env.outputs.GRADLE_USER_HOME }}
+        #     echo $USER_HOME
         shell: bash
       - uses: actions/cache@v3
         with:
@@ -252,11 +252,11 @@ jobs:
       - name: build pages
         run: yarn build
 
-#       - name: dump inputs
-#         run: |
-#           echo "choice ${{ inputs.withDeploy }}"
+      #       - name: dump inputs
+      #         run: |
+      #           echo "choice ${{ inputs.withDeploy }}"
 
       - name: deploy pages
         # if: startsWith(github.ref, 'refs/tags/v')
-#         if: false
+        #         if: false
         run: gulp deploy
