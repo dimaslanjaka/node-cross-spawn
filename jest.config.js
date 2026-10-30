@@ -6,6 +6,7 @@ const config = {
   testMatch: [`**/__tests__/**/*.+(ts|tsx|js|cjs|mjs)`, `**/?(*.)+(spec|test).+(ts|tsx|js|cjs|mjs)`],
   testPathIgnorePatterns: ['<rootDir>/node_modules', '<rootDir>/dist', '<rootDir>/tmp'],
   transform: {
+    '\\.(mjs|cjs)$': 'babel-jest',
     '\\.[jt]sx?$': 'babel-jest',
     '^.+\\.(ts|tsx)$': [
       'ts-jest',
