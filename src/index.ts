@@ -62,6 +62,9 @@ const spawn: SpawnModule = Object.assign(spawnCall, spawnHelpers);
  * Exports
  */
 export default spawn;
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = spawn;
+}
 
 export const sync = spawn.sync;
 export const async = spawn.async;
