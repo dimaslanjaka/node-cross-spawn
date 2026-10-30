@@ -3,23 +3,23 @@ name: CI
 on:
   push:
     paths-ignore:
-      - "**/*.tgz"
-      - "**/*.gz"
-      - "**/release*/**"
-      - "**/dist/**"
-      - "**garbage-collector**"
-      - "**codeql**"
-      - "**/.github/workflows/tester.yml"
+      - '**/*.tgz'
+      - '**/*.gz'
+      - '**/release*/**'
+      - '**/dist/**'
+      - '**garbage-collector**'
+      - '**codeql**'
+      - '**/.github/workflows/tester.yml'
 
   pull_request:
     types:
       - closed
     paths-ignore:
-      - "**/release*/**"
-      - "**/dist/**"
-      - "**/*.tgz"
-      - "**/*.gz"
-      - "**/test*/**"
+      - '**/release*/**'
+      - '**/dist/**'
+      - '**/*.tgz'
+      - '**/*.gz'
+      - '**/test*/**'
 
   workflow_dispatch:
 
@@ -29,7 +29,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ['18', '20', '22']
+        node-version: ['18', '20', '22', '24', '26']
 
     steps:
       - uses: actions/checkout@v4
@@ -38,32 +38,91 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: yarn
-          cache-dependency-path: |
-            **/package-lock.json
-            **/yarn.lock
 
       # Cache heavy folders (node_modules + build outputs)
       - name: Cache node_modules + build artifacts
         uses: actions/cache@v4
         with:
           path: |
-            node_modules
             **/node_modules
-            dist
             **/dist
-            tmp
             **/tmp
-          key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('package.json') }}
           restore-keys: |
             ${{ runner.os }}-node-${{ matrix.node-version }}-
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: yarn install
+        run: touch yarn.lock && yarn install
 
       - name: Lint
-        run: npm run lint
+        run: yarn run lint
 
       - name: Test
-        run: npm test
+        run: yarn test
+        id: test
+
+      - name: Pack
+        run: yarn run pack
+        if: ${{ steps.test.outcome == 'success' }}
+        id: pack
+
+      - name: 🕵️‍♂️ Check for changes in build artifacts
+        id: changes
+        if: ${{ steps.test.outcome == 'success' && steps.pack.outcome == 'success' }}
+        shell: bash
+        run: |
+          PATHS=( ':(glob)release*/*.tgz' )
+          TRACKED=$(git diff --name-only HEAD -- "${PATHS[@]}" || true)
+          UNTRACKED=$(git ls-files --others --exclude-standard -- "${PATHS[@]}" || true)
+          FILES=$(printf '%s\n%s\n' "$TRACKED" "$UNTRACKED" | sed '/^$/d' | sort -u)
+          if [ -n "$FILES" ]; then
+            echo "Found artifact changes"
+          else
+            echo "No artifact changes detected"
+          fi
+          echo "files<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$FILES" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+          if [ -z "$FILES" ]; then
+            echo "files_changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "files_changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 👤 Configure git user/email
+        if: steps.changes.outputs.files_changed == 'true'
+        continue-on-error: true
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config --global url.\"https://x-access-token:${{ env.github_token }}@github.com/\".insteadOf \"https://github.com/\"
+
+      - name: ➕ Add build files to git
+        if: steps.changes.outputs.files_changed == 'true'
+        continue-on-error: true
+        run: git add -- release*/ || true
+
+      - name: 🚀 Push changes to remote
+        if: steps.changes.outputs.files_changed == 'true'
+        shell: bash
+        run: |
+          if [ $(git diff --cached --name-only | wc -l) -gt "0" ]; then
+            echo "Staged files and their sizes:"
+            for file in $(git diff --cached --name-only); do
+              if [ -f "$file" ]; then
+                size_bytes=$(stat -c%s "$file")
+                size_mb=$((size_bytes / 1024 / 1024))
+                echo "${size_mb}MB $file"
+                if [ "$size_mb" -gt 30 ]; then
+                  echo "Error: $file exceeds 30MB ($size_mb MB). Aborting push."
+                  tar -tzvf "$file"
+                  exit 1
+                fi
+              fi
+            done
+            git commit -m "chore: update build from ${{ github.event.head_commit.url || 'workflow' }}" \
+                       -m "commit hash: ${{ github.sha }}" \
+                       -m "runner: ${{ github.run_id }}"
+            git push
+          fi
