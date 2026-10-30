@@ -1,24 +1,24 @@
-import commonjs from "@rollup/plugin-commonjs";
-import resolve from "@rollup/plugin-node-resolve";
-import typescript from "@rollup/plugin-typescript";
-import dts from "rollup-plugin-dts";
-import { builtinModules } from "node:module";
-import pkg from "./package.json" with { type: "json" };
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
+import dts from 'rollup-plugin-dts';
+import { builtinModules } from 'node:module';
+import pkg from './package.json' with { type: 'json' };
 
 /**
  * Packages that should be bundled (not externalized)
  * @type {string[]}
  */
 export const bundledPackages = [
-  "p-limit",
-  "deepmerge-ts",
-  "hexo-is",
-  "is-stream",
-  "markdown-it",
-  "node-cache",
-  "is-file-stream",
-  "strip-ansi",
-  "ansi-regex",
+  'p-limit',
+  'deepmerge-ts',
+  'hexo-is',
+  'is-stream',
+  'markdown-it',
+  'node-cache',
+  'is-file-stream',
+  'strip-ansi',
+  'ansi-regex'
 ];
 
 /**
@@ -36,32 +36,27 @@ export const externalPackages = uniq(
   Object.keys(pkg.dependencies ?? {})
     .concat(Object.keys(pkg.devDependencies ?? {}))
     .concat([
-      "hexo",
-      "warehouse",
-      "hexo-util",
-      "canvas",
-      "jsdom",
-      "mime-db",
-      "sbg-utility",
-      "through2",
-      "gulp",
-      "bluebird",
+      'hexo',
+      'warehouse',
+      'hexo-util',
+      'canvas',
+      'jsdom',
+      'mime-db',
+      'sbg-utility',
+      'through2',
+      'gulp',
+      'bluebird'
     ])
-).filter(
-  (pkgName, idx, arr) =>
-    !bundledPackages.includes(pkgName) && arr.indexOf(pkgName) === idx
-);
+).filter((pkgName, idx, arr) => !bundledPackages.includes(pkgName) && arr.indexOf(pkgName) === idx);
 
-const nodeBuiltinModules = uniq(
-  builtinModules.flatMap((moduleName) => [moduleName, `node:${moduleName}`])
-);
+const nodeBuiltinModules = uniq(builtinModules.flatMap((moduleName) => [moduleName, `node:${moduleName}`]));
 
 function isExternal(id) {
   return externalPackages.includes(id) || nodeBuiltinModules.includes(id);
 }
 
-const input = "src/index.ts";
-const tsconfig = "./tsconfig.build.json";
+const input = 'src/index.ts';
+const tsconfig = './tsconfig.build.json';
 
 export default [
   // =========================
@@ -71,18 +66,18 @@ export default [
     input,
     external: isExternal,
     output: {
-      file: "dist/index.mjs",
-      format: "esm",
-      sourcemap: true,
+      file: 'dist/index.mjs',
+      format: 'esm',
+      sourcemap: true
     },
     plugins: [
       resolve(),
       commonjs(),
       typescript({
         tsconfig,
-        declaration: false,
-      }),
-    ],
+        declaration: false
+      })
+    ]
   },
 
   // =========================
@@ -92,30 +87,30 @@ export default [
     input,
     external: isExternal,
     output: {
-      file: "dist/index.cjs",
-      format: "cjs",
-      exports: "auto",
-      sourcemap: true,
+      file: 'dist/index.cjs',
+      format: 'cjs',
+      exports: 'auto',
+      sourcemap: true
     },
     plugins: [
       resolve(),
       commonjs(),
       typescript({
         tsconfig,
-        declaration: false,
-      }),
-    ],
+        declaration: false
+      })
+    ]
   },
 
   // =========================
   // DTS bundle
   // =========================
   {
-    input: "dist/index.d.ts",
+    input: 'dist/index.d.ts',
     output: {
-      file: "dist/index.d.mts",
-      format: "es",
+      file: 'dist/index.d.mts',
+      format: 'es'
     },
-    plugins: [dts()],
-  },
+    plugins: [dts()]
+  }
 ];
