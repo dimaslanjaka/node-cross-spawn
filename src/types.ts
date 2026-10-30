@@ -1,11 +1,15 @@
-import * as child_process from "child_process";
-import * as internalSpawn from "./spawn";
+import * as child_process from 'child_process';
+import * as internalSpawn from './spawn';
 
 export type SpawnSyncResult = ReturnType<typeof internalSpawn.spawnSync>;
 export type SpawnAsyncResult = ReturnType<typeof internalSpawn.spawnAsync>;
 
 export type SpawnModule = {
-  (command: string, args?: readonly string[] | child_process.SpawnOptions, options?: child_process.SpawnOptions): child_process.ChildProcess;
+  (
+    command: string,
+    args?: readonly string[] | child_process.SpawnOptions,
+    options?: child_process.SpawnOptions
+  ): child_process.ChildProcess;
 
   sync: typeof internalSpawn.spawnSync;
   async: typeof internalSpawn.spawnAsync;
