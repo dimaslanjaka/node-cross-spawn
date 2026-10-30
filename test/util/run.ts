@@ -46,7 +46,7 @@ function runSync(command: string, args: string[], options: SpawnOptions | undefi
 }
 
 function runAsync(command: string, args: string[] | SpawnOptions, options: SpawnOptions | undefined) {
-  const cp = spawn.async!(command, args, options);
+  const cp = spawn.spawn(command, args, options);
 
   const promise = new Promise<spawnResult>((resolve, reject) => {
     let stdout: Buffer | null = null;
@@ -97,6 +97,7 @@ function runAsync(command: string, args: string[] | SpawnOptions, options: Spawn
 interface spawnResult {
   stdout: string | null;
   stderr: string | null;
+  cp?: ChildProcess;
 }
 
 /**
@@ -109,7 +110,7 @@ interface spawnResult {
 function run(
   method: 'async',
   command: string,
-  args: string[],
+  args?: string[] | (SpawnOptions & Record<string, any>),
   options?: SpawnOptions & Record<string, any>
 ): Promise<spawnResult>;
 /**
@@ -122,7 +123,7 @@ function run(
 function run(
   method: 'sync',
   command: string,
-  args: string[],
+  args?: string[] | (SpawnOptions & Record<string, any>),
   options?: SpawnOptions & Record<string, any>
 ): spawnResult;
 
@@ -134,7 +135,12 @@ function run(
  * @param options
  * @returns
  */
-function run(method: string, command: string, args: string[], options?: SpawnOptions & Record<string, any>) {
+function run(
+  method: string,
+  command: string,
+  args?: string[] | (SpawnOptions & Record<string, any>),
+  options?: SpawnOptions & Record<string, any>
+) {
   // Are we forcing the shell?
   if (isForceShell(method)) {
     if (args && !Array.isArray(args)) {
@@ -147,7 +153,10 @@ function run(method: string, command: string, args: string[], options?: SpawnOpt
   }
 
   // Run sync version
-  return method === 'sync' ? runSync(command, args, options) : runAsync(command, args, options);
+  const finalArgs = Array.isArray(args) ? args : [];
+  const finalOptions = args && !Array.isArray(args) ? { ...args, ...options } : options;
+
+  return method === 'sync' ? runSync(command, finalArgs, finalOptions) : runAsync(command, finalArgs, finalOptions);
 }
 
 /*
@@ -163,5 +172,5 @@ module.exports.isForceShell = isForceShell;
 */
 
 export default run;
-export const methods = ['spawn-force-shell', 'spawn', 'sync-force-shell', 'sync'];
-export { isForceShell, isMethodSync };
+export const methods = ['spawn-force-shell', 'spawn', 'sync-force-shell', 'sync'] as const;
+export { isForceShell, isMethodSync, run };
