@@ -55,7 +55,18 @@ function isExternal(id) {
   return externalPackages.includes(id) || nodeBuiltinModules.includes(id);
 }
 
-const input = 'src/index.ts';
+const input = {
+  index: 'src/index.ts',
+  'index-safe': 'src/index-safe.ts',
+  spawn: 'src/spawn.ts',
+  types: 'src/types.ts',
+  'lib/enoent': 'src/lib/enoent.js',
+  'lib/parse': 'src/lib/parse.js',
+  'lib/util/escape': 'src/lib/util/escape.js',
+  'lib/util/pathKey': 'src/lib/util/pathKey.js',
+  'lib/util/readShebang': 'src/lib/util/readShebang.js',
+  'lib/util/resolveCommand': 'src/lib/util/resolveCommand.js'
+};
 const tsconfig = './tsconfig.build.json';
 
 export default [
@@ -66,7 +77,8 @@ export default [
     input,
     external: isExternal,
     output: {
-      file: 'dist/index.mjs',
+      dir: 'dist',
+      entryFileNames: '[name].mjs',
       format: 'esm',
       sourcemap: true
     },
@@ -81,13 +93,47 @@ export default [
   },
 
   // =========================
-  // CJS build
+  // CJS build (Main)
   // =========================
   {
-    input,
+    input: { index: 'src/index.ts' },
     external: isExternal,
     output: {
-      file: 'dist/index.cjs',
+      dir: 'dist',
+      entryFileNames: '[name].cjs',
+      format: 'cjs',
+      exports: 'auto',
+      sourcemap: true
+    },
+    plugins: [
+      resolve(),
+      commonjs(),
+      typescript({
+        tsconfig,
+        declaration: false
+      })
+    ]
+  },
+
+  // =========================
+  // CJS build (Utils)
+  // =========================
+  {
+    input: {
+      'index-safe': 'src/index-safe.ts',
+      spawn: 'src/spawn.ts',
+      types: 'src/types.ts',
+      'lib/enoent': 'src/lib/enoent.js',
+      'lib/parse': 'src/lib/parse.js',
+      'lib/util/escape': 'src/lib/util/escape.js',
+      'lib/util/pathKey': 'src/lib/util/pathKey.js',
+      'lib/util/readShebang': 'src/lib/util/readShebang.js',
+      'lib/util/resolveCommand': 'src/lib/util/resolveCommand.js'
+    },
+    external: isExternal,
+    output: {
+      dir: 'dist',
+      entryFileNames: '[name].cjs',
       format: 'cjs',
       exports: 'auto',
       sourcemap: true
