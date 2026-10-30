@@ -24,7 +24,9 @@
     // skip installed module types
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
     "tsBuildInfoFile": "tmp/buildInfo.txt",
-    "types": ["node"]
+    "types": ["node", "jest"]
   }
 }
