@@ -2,8 +2,9 @@
 ## Releases
 | version | tarball url |
 | :--- | :--- |
-| 7.0.4 | https://github.com/dimaslanjaka/node-cross-spawn/raw/7bcbcde/release/cross-spawn-7.0.4.tgz |
-| latest | https://github.com/dimaslanjaka/node-cross-spawn/raw/7bcbcde/release/cross-spawn.tgz |
+| 7.0.4 | https://github.com/dimaslanjaka/node-cross-spawn/raw/80999ac/release/cross-spawn-7.0.4.tgz |
+| 7.0.6 | https://github.com/dimaslanjaka/node-cross-spawn/raw/dd0273f/release/cross-spawn-7.0.6.tgz |
+| latest | https://github.com/dimaslanjaka/node-cross-spawn/raw/dd0273f/release/cross-spawn.tgz |
 | latest | https://github.com/dimaslanjaka/node-cross-spawn/raw/private/release/cross-spawn.tgz |
 
 use this tarball with `resolutions`:
@@ -17,7 +18,9 @@ use this tarball with `resolutions`:
 
 ## Releases
 
-    ## Get URL of `cross-spawn` Release Tarball
+    
+
+## Get URL of `cross-spawn` Release Tarball
 - select tarball file
 ![gambar](https://user-images.githubusercontent.com/12471057/203216375-8af4b5d9-00c2-40fb-8d3d-d220beaabd46.png)
 - copy raw url
@@ -25,6 +28,7 @@ use this tarball with `resolutions`:
 - or copy download url
 ![gambar](https://user-images.githubusercontent.com/12471057/203216541-3807d2c3-5213-49f3-b93d-c626dbae3b2e.png)
 - then run installation from command line
+
 ```bash
 npm i https://....url-tgz
 ```
