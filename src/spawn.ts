@@ -75,7 +75,7 @@ export function spawnAsync(
   command: string,
   args: string[],
   options?: import('child_process').SpawnOptions
-): Promise<{ stdout: string; stderr: string; output: string; error: string | null }> {
+): Promise<{ stdout: string; stderr: string; output: string; error: string | null; err: string | null }> {
   return new Promise((resolve) => {
     let stdout = '';
     let stderr = '';
@@ -103,10 +103,12 @@ export function spawnAsync(
                 console.log('[ERROR]', command, ...args, 'dies with code', code, 'signal', signal);
             }*/
       // Process completed
+      const err = code !== 0 ? [command, ...args, 'dies with code', code, 'signal', signal].join(' ') : null;
       resolve({
         stdout,
         stderr,
-        error: code !== 0 ? [command, ...args, 'dies with code', code, 'signal', signal].join(' ') : null,
+        error: err,
+        err,
         output: `${stdout}\n\n${stderr}`
       });
     });
