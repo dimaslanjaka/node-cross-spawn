@@ -121,10 +121,10 @@
   },
   "packageManager": "yarn@4.18.1",
   "resolutions": {
-    "@dimaslanjaka/eslint-base-config": "https://github.com/dimaslanjaka/eslint-base-config/raw/c21437dd8072edf4d78531932ecd586708cd7e43/release/dimaslanjaka-eslint-base-config.tgz",
-    "cross-spawn": "https://github.com/dimaslanjaka/node-cross-spawn/raw/e48db3235351bbcb9394b21766b2d477cc6b7dd2/release/cross-spawn.tgz",
-    "binary-collections": "https://github.com/dimaslanjaka/bin/raw/62edc16286e4344292d337d620c293ea5a158183/releases/bin.tgz",
-    "git-command-helper": "https://github.com/dimaslanjaka/git-command-helper/raw/4e7f8475eafa0974c170893de354026967a71776/release/git-command-helper.tgz",
+    "@dimaslanjaka/eslint-base-config": "https://github.com/dimaslanjaka/eslint-base-config/raw/38b2d13009cff91841d0cd36a161924df021fbc7/release/dimaslanjaka-eslint-base-config.tgz",
+    "cross-spawn": "https://github.com/dimaslanjaka/node-cross-spawn/raw/d43c7c893997e8b0e2cf75ce870ac704583ad3b9/release/cross-spawn.tgz",
+    "binary-collections": "https://github.com/dimaslanjaka/bin/raw/5ac1e9905db41c7064fb10cec3526c9d5c074453/releases/bin.tgz",
+    "git-command-helper": "https://github.com/dimaslanjaka/git-command-helper/raw/c20bad2d6f26c83bd6676ebdfe4c49de258153a8/release/git-command-helper.tgz",
     "sbg-utility": "https://github.com/dimaslanjaka/static-blog-generator/raw/1ca385787f7287155b547c5b97d5ffd5bcfab482/packages/sbg-utility/release/sbg-utility.tgz",
     "got": "11.8.2"
   }
