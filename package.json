@@ -55,7 +55,7 @@
     "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly --declarationDir dist --declaration --rootDir src",
     "build:js": "rollup -c",
     "build": "npm run build:types && npm run build:js",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "husky": {
     "hooks": {
@@ -119,7 +119,7 @@
   "engines": {
     "node": ">= 8"
   },
-  "packageManager": "yarn@4.13.0",
+  "packageManager": "yarn@4.18.1",
   "resolutions": {
     "@dimaslanjaka/eslint-base-config": "https://github.com/dimaslanjaka/eslint-base-config/raw/c21437dd8072edf4d78531932ecd586708cd7e43/release/dimaslanjaka-eslint-base-config.tgz",
     "cross-spawn": "https://github.com/dimaslanjaka/node-cross-spawn/raw/e48db3235351bbcb9394b21766b2d477cc6b7dd2/release/cross-spawn.tgz",
