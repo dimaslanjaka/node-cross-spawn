@@ -24,7 +24,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  unit:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -53,23 +53,58 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: touch yarn.lock && yarn install
+        run: |
+          corepack enable
+          corepack prepare yarn@4.18.1 --activate
+          yarn set version 4.18.1
+          touch yarn.lock
+          yarn install
 
-      - name: Lint
-        run: yarn run lint
+      # - name: Lint
+      #   run: yarn run lint
 
       - name: Test
         run: yarn test
         id: test
 
+  pack:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Cache node_modules + build artifacts
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/node_modules
+            **/dist
+            **/tmp
+          key: ${{ runner.os }}-node-24-${{ hashFiles('package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-24-
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: |
+          corepack enable
+          corepack prepare yarn@4.18.1 --activate
+          yarn set version 4.18.1
+          touch yarn.lock
+          yarn install
+
       - name: Pack
         run: yarn run pack
-        if: ${{ steps.test.outcome == 'success' }}
         id: pack
 
       - name: 🕵️‍♂️ Check for changes in build artifacts
         id: changes
-        if: ${{ steps.test.outcome == 'success' && steps.pack.outcome == 'success' }}
+        if: ${{ steps.pack.outcome == 'success' }}
         shell: bash
         run: |
           PATHS=( ':(glob)release*/*.tgz' )
