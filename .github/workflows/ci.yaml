@@ -61,10 +61,18 @@ jobs:
           touch yarn.lock
           yarn install
 
-      # - name: Lint
-      #   run: yarn run lint
+      - name: Lint
+        run: yarn run lint
+        continue-on-error: true
 
-      - name: Test
+      - name: 🧹 Clean
+        run: |
+          yarn clean
+
+      - name: 🏗️ Build
+        run: yarn build
+
+      - name: 🧪 Test
         run: yarn test
         id: test
 
@@ -99,6 +107,13 @@ jobs:
           yarn set version 4.18.1
           touch yarn.lock
           yarn install
+
+      - name: 🧹 Clean
+        run: |
+          yarn clean
+
+      - name: 🏗️ Build
+        run: yarn build
 
       - name: Pack
         run: yarn run pack
