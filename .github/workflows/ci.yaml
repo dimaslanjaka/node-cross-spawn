@@ -54,6 +54,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get update && sudo apt-get install -y python3 build-essential make gcc
           corepack enable
           corepack prepare yarn@4.18.1 --activate
           yarn set version 4.18.1
@@ -92,6 +93,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get update && sudo apt-get install -y python3 build-essential make gcc
           corepack enable
           corepack prepare yarn@4.18.1 --activate
           yarn set version 4.18.1
